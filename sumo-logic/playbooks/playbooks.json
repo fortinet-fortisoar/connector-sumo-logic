@@ -1,0 +1,501 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@type": "WorkflowCollection",
+      "name": "Sample - Sumo Logic - 1.0.1",
+      "description": "Sample playbooks for \"Sumo Logic\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
+      "visible": true,
+      "image": "/api/3/images/eb0a76fc-b3a9-4ece-b196-0eb184e115d0",
+      "uuid": "df391920-5222-413f-b4a4-4c63d7de07fc",
+      "recordTags": [],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Create Search Job",
+          "aliasName": null,
+          "description": "Creates a search job in Sumo Logic based on the input parameters you have specified.",
+          "collection": "/api/3/workflow_collections/df391920-5222-413f-b4a4-4c63d7de07fc",
+          "tag": "#Sumo_Logic",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/c8ea55ed-2597-4913-b9b5-77ecfe7e0b5d",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Create Search Job",
+              "description": null,
+              "arguments": {
+                "name": "Sumo Logic",
+                "config": "",
+                "params": {
+                  "to": "2021-02-02T18:30:00.000Z",
+                  "from": "2021-02-01T18:30:00.000Z",
+                  "query": "| count _sourceCategory",
+                  "timeZone": "PST"
+                },
+                "version": "1.0.1",
+                "connector": "sumo-logic",
+                "operation": "create_search_job",
+                "operationTitle": "Create Search Job",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "left": "125",
+              "top": "165",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "724a7aba-366f-4e52-8dba-79b06a231dbe"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "8edecb19-552d-4243-af0a-88e1ebf31b92",
+                "title": "Sumo Logic: Create Search Job",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "left": "125",
+              "top": "30",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "c8ea55ed-2597-4913-b9b5-77ecfe7e0b5d"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "3b746da4-c174-4f3b-acf2-7c1b82c5dc19",
+              "name": "Alerts -> Create Search Job",
+              "label": null,
+              "isExecuted": false,
+              "targetStep": "/api/3/workflow_steps/724a7aba-366f-4e52-8dba-79b06a231dbe",
+              "sourceStep": "/api/3/workflow_steps/c8ea55ed-2597-4913-b9b5-77ecfe7e0b5d"
+            }
+          ],
+          "versions": [],
+          "lastModifyDate": 1612437096,
+          "priority": null,
+          "uuid": "03b86ae2-7948-4488-88b5-2a0660462f9f",
+          "recordTags": [
+            "sumo-logic"
+          ],
+          "isPrivate": false,
+          "owners": []
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Messages Founded by Search Job",
+          "aliasName": null,
+          "description": "Retrieves messages founded by a search job from Sumo Logic based on the Search Job ID that you have specified.",
+          "collection": "/api/3/workflow_collections/df391920-5222-413f-b4a4-4c63d7de07fc",
+          "tag": "#Sumo_Logic",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/c9f139b1-964c-4e45-9e8d-a13d7be745b5",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Messages Founded by Search Job",
+              "description": null,
+              "arguments": {
+                "name": "Sumo Logic",
+                "config": "",
+                "params": {
+                  "limit": 10,
+                  "offset": 1,
+                  "searchJobId": "2FBE4DE3DAA82CF6"
+                },
+                "version": "1.0.1",
+                "connector": "sumo-logic",
+                "operation": "get_messages_founded_by_search_job",
+                "operationTitle": "Get Messages Founded by Search Job",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "left": "125",
+              "top": "165",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "3b5485dc-8a23-42ee-affb-82ee641933d4"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "0ec56604-be30-4dea-b2a7-62897bc5dfe2",
+                "title": "Sumo Logic: Get Messages Founded by Search Job",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "left": "125",
+              "top": "30",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "c9f139b1-964c-4e45-9e8d-a13d7be745b5"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "a6e80722-8455-4dc7-a636-295ba2c8037f",
+              "name": "Alerts -> Get Messages Founded by Search Job",
+              "label": null,
+              "isExecuted": false,
+              "targetStep": "/api/3/workflow_steps/3b5485dc-8a23-42ee-affb-82ee641933d4",
+              "sourceStep": "/api/3/workflow_steps/c9f139b1-964c-4e45-9e8d-a13d7be745b5"
+            }
+          ],
+          "versions": [],
+          "lastModifyDate": 1612437180,
+          "priority": null,
+          "uuid": "240e088d-2c55-474c-af03-fbecd65ca260",
+          "recordTags": [
+            "sumo-logic"
+          ],
+          "isPrivate": false,
+          "owners": []
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Search Job Status",
+          "aliasName": null,
+          "description": "Retrieves current status of a search job from Sumo Logic based on the Search Job ID that you have specified.",
+          "collection": "/api/3/workflow_collections/df391920-5222-413f-b4a4-4c63d7de07fc",
+          "tag": "#Sumo_Logic",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/d5804da8-abe2-46c3-8463-0c0496cef108",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "90b8b3bd-d02d-4cc6-9a77-47941adebebf",
+                "title": "Sumo Logic: Get Search Job Status",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "left": "125",
+              "top": "30",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "d5804da8-abe2-46c3-8463-0c0496cef108"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Search Job Status",
+              "description": null,
+              "arguments": {
+                "name": "Sumo Logic",
+                "config": "",
+                "params": {
+                  "searchJobId": "2FBE4DE3DAA82CF6"
+                },
+                "version": "1.0.1",
+                "connector": "sumo-logic",
+                "operation": "get_search_job_status",
+                "operationTitle": "Get Search Job Status",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "left": "125",
+              "top": "165",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "ecda9473-ee1b-46b0-b925-7c01b3329ff4"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "3770f990-8c9f-4bd4-adca-2c2126b9e1f0",
+              "name": "Alerts -> Get Search Job Status",
+              "label": null,
+              "isExecuted": false,
+              "targetStep": "/api/3/workflow_steps/ecda9473-ee1b-46b0-b925-7c01b3329ff4",
+              "sourceStep": "/api/3/workflow_steps/d5804da8-abe2-46c3-8463-0c0496cef108"
+            }
+          ],
+          "versions": [],
+          "lastModifyDate": 1612437264,
+          "priority": null,
+          "uuid": "312e8830-a62c-4696-b522-670bf076a6bd",
+          "recordTags": [
+            "sumo-logic"
+          ],
+          "isPrivate": false,
+          "owners": []
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Records Founded by Search Job",
+          "aliasName": null,
+          "description": "Retrieves records founded by a search job from Sumo Logic based on the Search Job ID that you have specified.",
+          "collection": "/api/3/workflow_collections/df391920-5222-413f-b4a4-4c63d7de07fc",
+          "tag": "#Sumo_Logic",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/ccb8aab7-952f-4e79-a949-9018a144bb2e",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Records Founded by Search Job",
+              "description": null,
+              "arguments": {
+                "name": "Sumo Logic",
+                "config": "",
+                "params": {
+                  "limit": 10000,
+                  "offset": 1,
+                  "searchJobId": "2FBE4DE3DAA82CF6"
+                },
+                "version": "1.0.1",
+                "connector": "sumo-logic",
+                "operation": "get_records_founded_by_search_job",
+                "operationTitle": "Get Records Founded by Search Job",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "left": "125",
+              "top": "165",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "4f44d641-f8b4-4aa7-b923-cd3e96071d4d"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "4e1676b8-b9e3-4368-9f53-dd465c70feac",
+                "title": "Sumo Logic: Get Records Founded by Search Job",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "left": "125",
+              "top": "30",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "ccb8aab7-952f-4e79-a949-9018a144bb2e"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "14a47880-5200-4b20-af33-30a7ccc2a72f",
+              "name": "Alerts -> Get Records Founded by Search Job",
+              "label": null,
+              "isExecuted": false,
+              "targetStep": "/api/3/workflow_steps/4f44d641-f8b4-4aa7-b923-cd3e96071d4d",
+              "sourceStep": "/api/3/workflow_steps/ccb8aab7-952f-4e79-a949-9018a144bb2e"
+            }
+          ],
+          "versions": [],
+          "lastModifyDate": 1612437358,
+          "priority": null,
+          "uuid": "aab39c6c-5d9d-4bd1-87e8-21a69f485504",
+          "recordTags": [
+            "sumo-logic"
+          ],
+          "isPrivate": false,
+          "owners": []
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Delete Search Job",
+          "aliasName": null,
+          "description": "Deletes an search job from a Sumo Logic based on the Search Job ID that you have specified.",
+          "collection": "/api/3/workflow_collections/df391920-5222-413f-b4a4-4c63d7de07fc",
+          "tag": "#Sumo_Logic",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/bc24d6bc-2a6a-459a-8a0d-1a51d563e784",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Delete Search Job",
+              "description": null,
+              "arguments": {
+                "name": "Sumo Logic",
+                "config": "",
+                "params": {
+                  "searchJobId": "2FBE4DE3DAA82CF6"
+                },
+                "version": "1.0.1",
+                "connector": "sumo-logic",
+                "operation": "delete_search_job",
+                "operationTitle": "Delete Search Job",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "left": "125",
+              "top": "165",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "9749984e-888b-47fa-8003-91cd387d1679"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "b4ba5007-2794-458d-a6f2-dc98b5b39564",
+                "title": "Sumo Logic: Delete Search Job",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "left": "125",
+              "top": "30",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "bc24d6bc-2a6a-459a-8a0d-1a51d563e784"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "46055b01-d085-4b53-b15c-5d381bfe22f5",
+              "name": "Alerts -> Delete Search Job",
+              "label": null,
+              "isExecuted": false,
+              "targetStep": "/api/3/workflow_steps/9749984e-888b-47fa-8003-91cd387d1679",
+              "sourceStep": "/api/3/workflow_steps/bc24d6bc-2a6a-459a-8a0d-1a51d563e784"
+            }
+          ],
+          "versions": [],
+          "lastModifyDate": 1612437337,
+          "priority": null,
+          "uuid": "f259646f-69b4-457b-af00-d7002a4f9f7d",
+          "recordTags": [
+            "sumo-logic"
+          ],
+          "isPrivate": false,
+          "owners": []
+        }
+      ]
+    }
+  ],
+  "exported_tags": [
+    "sumo-logic"
+  ]
+}

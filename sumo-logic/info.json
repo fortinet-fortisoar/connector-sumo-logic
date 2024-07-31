@@ -1,0 +1,330 @@
+{
+  "name": "sumo-logic",
+  "label": "Sumo Logic",
+  "description": "Sumo Logic connector provides application collect and analyze machine data",
+  "publisher": "Community",
+  "cs_approved": false,
+  "cs_compatible": true,
+  "version": "1.0.1",
+  "category": "Information",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.1/sumo-logic/90/sumo-logic-v1-0-1",
+  "icon_small_name": "sumologic_small.png",
+  "icon_large_name": "sumologic_medium.png",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "description": "URL of the Sumo Logic API server to which you will connect and perform automated operations.",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "tooltip": "API Endpoint, For e.g: https://api.us2.sumologic.com",
+        "name": "server_url"
+      },
+      {
+        "title": "Access ID",
+        "description": "ID required to access the Sumo Logic API.",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "access_id"
+      },
+      {
+        "title": "Access Key",
+        "description": "Key to access the Sumo Logic API.",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "access_key"
+      },
+      {
+        "title": "Verify SSL",
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True.",
+        "name": "verify_ssl",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "value": true
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "create_search_job",
+      "title": "Create Search Job",
+      "category": "investigation",
+      "annotation": "create_search_job",
+      "description": "Creates a search job based on the specified query and time range in Sumo Logic.",
+      "parameters": [
+        {
+          "title": "Query",
+          "description": "Query using which you want to create and execute a seach job in Sumo Logic. \nNote: You must add this query in a valid JSON format.",
+          "name": "query",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "tooltip": "This query should be valid JSON format.",
+          "type": "text"
+        },
+        {
+          "title": "From",
+          "description": "Start date and time from which you want to start the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format.",
+          "name": "from",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "datetime",
+          "tooltip": "Start date and time should be in YYYY-MM-DDTHH:mm:ss format."
+        },
+        {
+          "title": "To",
+          "description": "End date and time till when you want to end the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format.",
+          "name": "to",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "datetime",
+          "tooltip": "End date and time should be in YYYY-MM-DDTHH:mm:ss format."
+        },
+        {
+          "title": "Time Zone",
+          "description": "Select the timezone in which you want to start the search in Sumo Logic.",
+          "name": "timeZone",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "tooltip": "The time zone if from/to is not in milliseconds"
+        }
+      ],
+      "enabled": true,
+      "output_schema": {
+        "id": "",
+        "link": {
+          "rel": "",
+          "href": ""
+        }
+      }
+    },
+    {
+      "operation": "get_search_job_status",
+      "title": "Get Search Job Status",
+      "category": "investigation",
+      "annotation": "get_search_job_status",
+      "description": "Retrieves the current status of a search job from Sumo Logic based on the search job ID you have specified.",
+      "parameters": [
+        {
+          "title": "Search Job ID",
+          "description": "ID of the search job whose status you want to retrieve from Sumo Logic.",
+          "name": "searchJobId",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text"
+        }
+      ],
+      "enabled": true,
+      "output_schema": {
+        "state": "",
+        "histogramBuckets": [
+          {
+            "startTimestamp": "",
+            "length": "",
+            "count": ""
+          }
+        ],
+        "messageCount": "",
+        "recordCount": "",
+        "pendingWarnings": [],
+        "pendingErrors": [],
+        "usageDetails": ""
+      }
+    },
+    {
+      "operation": "get_messages_founded_by_search_job",
+      "title": "Get Messages Founded by Search Job",
+      "category": "investigation",
+      "annotation": "get_messages_founded_by_search_job",
+      "description": "Retrieves messages found by a search job from Sumo Logic based on the search job ID, offset, and limit you have specified.",
+      "parameters": [
+        {
+          "title": "Search Job ID",
+          "description": "ID of the search job whose messages you want to retrieve from Sumo Logic.",
+          "name": "searchJobId",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text"
+        },
+        {
+          "title": "Offset",
+          "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0.",
+          "name": "offset",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "tooltip": "Returns the message first start at position 0."
+        },
+        {
+          "title": "Limit",
+          "description": "Maximum number of messages, per page, that this operation should return.",
+          "name": "limit",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "tooltip": "The number of messages starting at offset to return. Note: Valid range is 1 to 10000 messages or 100 MB in total message size."
+        }
+      ],
+      "enabled": true,
+      "output_schema": {
+        "fields": [
+          {
+            "name": "",
+            "fieldType": "",
+            "keyField": ""
+          }
+        ],
+        "messages": [
+          {
+            "map": {
+              "_collector": "",
+              "eventtime": "",
+              "type": "",
+              "eventsource": "",
+              "_messageid": "",
+              "_size": "",
+              "accountid": "",
+              "category_string": "",
+              "event_type": "",
+              "action": "",
+              "awsaccountid": "",
+              "eventversion": "",
+              "groupid": "",
+              "_sourceid": "",
+              "cidr_block": "",
+              "requestid": "",
+              "_source": "",
+              "eventtype": "",
+              "from_port": "",
+              "eventid": "",
+              "_raw": "",
+              "_collectorid": "",
+              "useragent": "",
+              "_sourcehost": "",
+              "eventname": "",
+              "accesskeyid": "",
+              "egress": "",
+              "computer": "",
+              "logon_id": "",
+              "msg_summary": "",
+              "account_name": "",
+              "_format": "",
+              "arn": "",
+              "_blockid": "",
+              "sourceipaddress": "",
+              "account_domain": "",
+              "_messagetime": "",
+              "to_port": "",
+              "_messagecount": "",
+              "principalid": "",
+              "recipientaccountid": "",
+              "_sourcename": "",
+              "event_id": "",
+              "_view": "",
+              "_receipttime": "",
+              "_sourcecategory": "",
+              "category": "",
+              "responseelements": "",
+              "awsregion": "",
+              "username": ""
+            }
+          }
+        ]
+      }
+    },
+    {
+      "operation": "get_records_founded_by_search_job",
+      "title": "Get Records Founded by Search Job",
+      "category": "investigation",
+      "annotation": "get_records_founded_by_search_job",
+      "description": "Retrieves records found by a search job from Sumo Logic based on the search job ID, offset, and limit you have specified.",
+      "parameters": [
+        {
+          "title": "Search Job ID",
+          "description": "ID of the search job whose records you want to retrieve from Sumo Logic.",
+          "name": "searchJobId",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text"
+        },
+        {
+          "title": "Offset",
+          "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say records starting from the 10th record. By default, this is set as 0.",
+          "name": "offset",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "tooltip": "Return records starting at this offset."
+        },
+        {
+          "title": "Limit",
+          "description": "Maximum number of messages, per page, that this operation should return.",
+          "name": "limit",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "tooltip": "The number of messages starting at offset to return. Note: Valid range is 1 to 10000 messages."
+        }
+      ],
+      "enabled": true,
+      "output_schema": {
+        "fields": [
+          {
+            "name": "",
+            "fieldType": "",
+            "keyField": ""
+          }
+        ],
+        "records": [
+          {
+            "map": {
+              "_count": "",
+              "_sourcecategory": ""
+            }
+          }
+        ]
+      }
+    },
+    {
+      "operation": "delete_search_job",
+      "title": "Delete Search Job",
+      "category": "investigation",
+      "annotation": "delete_search_job",
+      "description": "Deletes a search job from Sumo Logic based on the search job ID you have specified.",
+      "parameters": [
+        {
+          "title": "Search Job ID",
+          "description": "ID of the search job that you want to delete from Sumo Logic.",
+          "name": "searchJobId",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text"
+        }
+      ],
+      "enabled": true,
+      "output_schema": {
+        "id": ""
+      }
+    }
+  ]
+}
