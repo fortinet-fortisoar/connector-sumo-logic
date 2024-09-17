@@ -8,6 +8,7 @@ import base64, json, requests
 from connectors.core.connector import ConnectorError, get_logger
 
 logger = get_logger('sumo_logic')
+
 SSL_VALIDATION_ERROR = 'SSL certificate validation failed'
 CONNECTION_TIMEOUT = 'The request timed out while trying to connect to the remote server'
 REQUEST_READ_TIMEOUT = 'The server did not send any data in the allotted amount of time'
@@ -16,6 +17,7 @@ SEARCH_JOB_STATUS = '/api/v1/search/jobs/{SEARCH_JOB_ID}'
 GET_MESSAGE_BY_SEARCH_JOB = '/api/v1/search/jobs/{SEARCH_JOB_ID}/messages?offset={OFFSET}&limit={LIMIT}'
 GET_RECORDS_BY_SEARCH_JOB = '/api/v1/search/jobs/{SEARCH_JOB_ID}/records?offset={OFFSET}&limit={LIMIT}'
 CHECK = '/api/v1/collectors?limit=2'
+
 
 ERROR_MSG = {
     400: 'Bad/Invalid Request',
@@ -93,7 +95,6 @@ def _api_request(url, config, method='get', payload={}, json_format=True, params
     except Exception as Err:
         raise ConnectorError(Err)
 
-
 def _get_list_from_str_or_list(params, parameter):
     try:
         parameter_list = params.get(parameter)
@@ -111,7 +112,6 @@ def _get_list_from_str_or_list(params, parameter):
     except Exception as Err:
         raise ConnectorError(Err)
 
-
 def check_health(config):
     try:
         response = _api_request(CHECK, config)
@@ -127,7 +127,6 @@ def check_health(config):
         raise ConnectorError(REQUEST_READ_TIMEOUT)
     except Exception as err:
         raise ConnectorError(str(err))
-
 
 def create_search_job(config, params):
     try:
@@ -187,10 +186,67 @@ def delete_search_job(config, params):
         raise ConnectorError(str(Err))
 
 
+def get_list_of_all_insights(config, params):
+    try:
+        query = f'/api/sec/v1/insights/all'
+        return _api_request(query, config)
+    except Exception as Err:
+        logger.exception(str(Err))
+        raise ConnectorError(str(Err))
+
+
+def get_details_by_insights_id(config, params):
+    try:
+        insights_id = params.get('insights_id')
+        quary = f'/api/sec/v1/insights/{insights_id}'
+        return _api_request(quary, config)
+    except Exception as Err:
+        logger.exception(str(Err))
+        raise ConnectorError(str(Err))
+
+
+def get_list_of_insights(config, params):
+    try:
+        offset = params.get('offset')
+        limit = params.get('limit')
+        record_summary_fields = params.get('recordSummaryFields').split(',')
+        record_summary_fields_str = ','.join(record_summary_fields)
+        query = f'/api/sec/v1/insights?offset={offset}&limit={limit}&recordSummaryFields={record_summary_fields_str}'
+        return _api_request(query, config)
+    except Exception as Err:
+        logger.exception(str(Err))
+        raise ConnectorError(str(Err))
+
+
+def get_list_of_insights_by_query(config, params):
+    try:
+        query = _get_input(params, "query")
+        param = {
+            "query": query,
+        }
+        offset = params.get('offset')  # Provide a default value for offset
+        limit = params.get('limit')  # Provide a default value for limit
+
+        # Handle recordSummaryFields correctly
+        record_summary_fields = params.get('recordSummaryFields', '')
+        record_summary_fields_list = record_summary_fields.split(',') if record_summary_fields else []
+        record_summary_fields_str = ','.join(record_summary_fields_list)
+
+        query_url = f'/api/sec/v1/insights?offset={offset}&limit={limit}&recordSummaryFields={record_summary_fields_str}'
+        return _api_request(query_url, config, payload=param, method='get')
+    except Exception as err:
+        logger.exception(str(err))
+        raise ConnectorError(str(err))
+
+
 sumo_logic_ops = {
     'create_search_job': create_search_job,
     'get_search_job_status': get_search_job_status,
     'get_messages_founded_by_search_job': get_messages_founded_by_search_job,
     'get_records_founded_by_search_job': get_records_founded_by_search_job,
-    'delete_search_job': delete_search_job
+    'delete_search_job': delete_search_job,
+    'get_list_of_insights_by_query': get_list_of_insights_by_query,
+    'get_list_of_all_insights': get_list_of_all_insights,
+    'get_details_by_insights_id': get_details_by_insights_id,
+    'get_list_of_insights': get_list_of_insights,
 }
