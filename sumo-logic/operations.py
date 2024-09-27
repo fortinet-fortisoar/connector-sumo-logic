@@ -1,8 +1,9 @@
-""" Copyright start
-  Copyright (C) 2008 - 2021 Fortinet Inc.
-  All rights reserved.
-  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
-  Copyright end """
+"""
+Copyright start
+MIT License
+Copyright (c) 2024 Fortinet Inc
+Copyright end
+"""
 
 import base64, json, requests
 from connectors.core.connector import ConnectorError, get_logger
@@ -204,18 +205,18 @@ def get_details_by_insights_id(config, params):
         logger.exception(str(Err))
         raise ConnectorError(str(Err))
 
-
-def get_list_of_insights(config, params):
-    try:
-        offset = params.get('offset')
-        limit = params.get('limit')
-        record_summary_fields = params.get('recordSummaryFields').split(',')
-        record_summary_fields_str = ','.join(record_summary_fields)
-        query = f'/api/sec/v1/insights?offset={offset}&limit={limit}&recordSummaryFields={record_summary_fields_str}'
-        return _api_request(query, config)
-    except Exception as Err:
-        logger.exception(str(Err))
-        raise ConnectorError(str(Err))
+# Not used in this version, No info.json info provided for this action
+# def get_list_of_insights(config, params):
+#     try:
+#         offset = params.get('offset')
+#         limit = params.get('limit')
+#         record_summary_fields = params.get('recordSummaryFields').split(',')
+#         record_summary_fields_str = ','.join(record_summary_fields)
+#         query = f'/api/sec/v1/insights?offset={offset}&limit={limit}&recordSummaryFields={record_summary_fields_str}'
+#         return _api_request(query, config)
+#     except Exception as Err:
+#         logger.exception(str(Err))
+#         raise ConnectorError(str(Err))
 
 
 def get_list_of_insights_by_query(config, params):
@@ -248,5 +249,5 @@ sumo_logic_ops = {
     'get_list_of_insights_by_query': get_list_of_insights_by_query,
     'get_list_of_all_insights': get_list_of_all_insights,
     'get_details_by_insights_id': get_details_by_insights_id,
-    'get_list_of_insights': get_list_of_insights,
+    # 'get_list_of_insights': get_list_of_insights,
 }
