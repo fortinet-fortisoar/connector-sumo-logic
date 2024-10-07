@@ -5,7 +5,7 @@
     "description": "Sumo Logic provides best-in-class cloud monitoring, log management, Cloud SIEM tools, and real-time insights for web and SaaS based apps.",
     "publisher": "SpryIQ.Co",
     "icon_small_name": "sumologic_small.png",
-    "help_online": "",
+    "help_online": "https://github.com/fortinet-fortisoar/connector-sumo-logic/blob/release/1.1.0/docs/SumoLogicConnectorDoc.md",
     "category": "Monitoring",
     "cs_compatible": true,
     "icon_large_name": "sumologic_medium.png",
