@@ -1,12 +1,14 @@
 {
-    "name": "sumo-logic_dev",
-    "version": "1.0.2",
+    "name": "sumo-logic",
+    "version": "1.1.0",
     "label": "Sumo Logic",
-    "description": "Sumo Logic connector provides application collect and analyze machine data",
+    "description": "Sumo Logic provides best-in-class cloud monitoring, log management, Cloud SIEM tools, and real-time insights for web and SaaS based apps.",
     "publisher": "SpryIQ.Co",
     "icon_small_name": "sumologic_small.png",
+    "help_online": "https://github.com/fortinet-fortisoar/connector-sumo-logic/blob/release/1.1.0/docs/SumoLogicConnectorDoc.md",
+    "category": "Monitoring",
+    "cs_compatible": true,
     "icon_large_name": "sumologic_medium.png",
-    "id": 132,
     "configuration": {
         "fields": [
             {
@@ -458,21 +460,5 @@
                 ]
             }
         }
-    ],
-    "category": "Information",
-    "active": true,
-    "cs_compatible": true,
-    "system": false,
-    "playbook_collections": [
-        {
-            "@id": "/api/3/workflow_collections/99a994e0-4581-4b8a-b300-fe50e8768339",
-            "name": "Sample - Sumo Logic - 1.0.2",
-            "image": "/api/3/images/047b9bbd-cd34-4187-962b-8db8f2c94cce",
-            "description": "Sample playbooks for \"Sumo Logic\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete."
-        }
-    ],
-    "icon_small": "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3VpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDAyIDc5LjE2NDQ4OCwgMjAyMC8wNy8xMC0yMjowNjo1MyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowNWEzOTZhNS1iNzhjLTRkNTAtYTQ2Yi04ZDJkNzI2YTNjNTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RkZFNDUyNjY1RUVFMTFFQkE0MEM5MkJFQjcxOTJFRkYiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RkZFNDUyNjU1RUVFMTFFQkE0MEM5MkJFQjcxOTJFRkYiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjIgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2NmU1MTA0ZS1mMWVjLTRhOWYtYTk5Yi0zZTQxMzZiMmVlNzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDVhMzk2YTUtYjc4Yy00ZDUwLWE0NmItOGQyZDcyNmEzYzU1Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+saB8ewAAAcRJREFUeNpi/P//PwMtARMDjcGoBaMWjFowagGNLHjx4vuVS+8xxc+cevPm9Q80QRY469SJ18+ffzMyFgEWr6ysTD9//r1399PXr38YmRilJLk0NPnXrLlvoC+sZyB05eL7M6ffcHKxHDnyPDBI8d3bn8eOvtTVE3r86KuYOOeObU++f/vr4y8LNARoLCOkuP75819s+AFNbQGg/udPv4lLcl678uHl8+9Aa0TFOb59/cPLy6aixnv08KueiWbXrrzfuunJt29/jEyFrl3++OvXX31DoUMHXqqq8TH8Z3j37qeji5SdgwQXFzPCB//+/Xd2lTp44AUHB/P7d7+eP//OyMgAtO/f3/+KSrwnTrx6/+6nuIQYIwPD3z////79//Xr7///GCQkuM6dfgv0CisbEwsL44/vf3//+sfDy8rPz/rn9z8GBmaED379+rd5w6OPH365e8ns3P7k9+9/JqaiTEwMQFN4+VlfvfouK8uzcsVdIyMRoDuAQfHmzY8/v//v2/80OloFGFybNz1kZmROSFZVVOLZveMZ0N8x8SqcXEgWUAKOHn555do7e1spDS1+TFnG0Spz1IJRC0YtGAkWAAQYAB9007fsf1BpAAAAAElFTkSuQmCC",
-    "icon_large": "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAIAAAABc2X6AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3VpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDAyIDc5LjE2NDQ4OCwgMjAyMC8wNy8xMC0yMjowNjo1MyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowNWEzOTZhNS1iNzhjLTRkNTAtYTQ2Yi04ZDJkNzI2YTNjNTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RkZFNDUyNjI1RUVFMTFFQkE0MEM5MkJFQjcxOTJFRkYiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RkZFNDUyNjE1RUVFMTFFQkE0MEM5MkJFQjcxOTJFRkYiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjIgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2NmU1MTA0ZS1mMWVjLTRhOWYtYTk5Yi0zZTQxMzZiMmVlNzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDVhMzk2YTUtYjc4Yy00ZDUwLWE0NmItOGQyZDcyNmEzYzU1Ii8+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",
-    "help_online": "https://github.com/jitesh-spryiq/connector-sumo-logic/blob/develop/docs/SumoLogicConnectorDoc.md",
-    "vendor_version": null
+    ]
 }
