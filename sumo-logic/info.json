@@ -5,8 +5,9 @@
     "description": "Sumo Logic provides best-in-class cloud monitoring, log management, Cloud SIEM tools, and real-time insights for web and SaaS based apps.",
     "publisher": "SpryIQ.Co",
     "icon_small_name": "sumologic_small.png",
-    "help_online": "https://github.com/fortinet-fortisoar/connector-sumo-logic/blob/release/1.1.0/docs/SumoLogicConnectorDoc.md",
+    "help_online": "https://docs.fortinet.com/document/fortisoar/1.1.0/sumo-logic/988/sumo-logic-v1-1-0",
     "category": "Monitoring",
+    "cs_approved": false,
     "cs_compatible": true,
     "icon_large_name": "sumologic_medium.png",
     "configuration": {
@@ -57,37 +58,37 @@
             "title": "Create Search Job",
             "category": "investigation",
             "annotation": "create_search_job",
-            "description": "Creates a search job based on the specified query and time range in Sumo Logic.",
+            "description": "Creates a search job in Sumo Logic based on the specified query, time range, and other input parameters that you have specified.",
             "parameters": [
                 {
                     "title": "Query",
-                    "description": "Query using which you want to create and execute a seach job in Sumo Logic. \nNote: You must add this query in a valid JSON format.",
+                    "description": "Specify the query using which you want to create and execute a search job in Sumo Logic.  \n\nNOTE: You must add this query in a valid JSON format.",
                     "type": "text",
                     "name": "query",
                     "required": true,
                     "visible": true,
                     "editable": true,
-                    "tooltip": "This query should be valid JSON format."
+                    "tooltip": "Specify the query using which you want to create and execute a search job in Sumo Logic.  \n\nNOTE: You must add this query in a valid JSON format."
                 },
                 {
                     "title": "From",
                     "type": "datetime",
-                    "description": "Start date and time from which you want to start the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format.",
+                    "description": "Specify the start date and time from which you want to start the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format.",
                     "name": "from",
                     "required": true,
                     "visible": true,
                     "editable": true,
-                    "tooltip": "Start date and time should be in YYYY-MM-DDTHH:mm:ss format."
+                    "tooltip": "Specify the start date and time from which you want to start the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format."
                 },
                 {
                     "title": "To",
                     "type": "datetime",
-                    "description": "End date and time till when you want to end the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format.",
+                    "description": "Specify the end date and time till when you want to end the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format.",
                     "name": "to",
                     "required": true,
                     "visible": true,
                     "editable": true,
-                    "tooltip": "End date and time should be in YYYY-MM-DDTHH:mm:ss format."
+                    "tooltip": "Specify the end date and time till when you want to end the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format."
                 },
                 {
                     "title": "Time Zone",
@@ -97,7 +98,7 @@
                     "required": true,
                     "visible": true,
                     "editable": true,
-                    "tooltip": "The time zone if from/to is not in milliseconds"
+                    "tooltip": "Select the timezone in which you want to start the search in Sumo Logic."
                 }
             ],
             "enabled": true,
@@ -114,11 +115,12 @@
             "title": "Get Search Job Status",
             "category": "investigation",
             "annotation": "get_search_job_status",
-            "description": "Retrieves the current status of a search job from Sumo Logic based on the search job ID you have specified.",
-            "parameters": [
+            "description": "Retrieves the current status of a search job from Sumo Logic based on the search job ID and pagination parameters you have specified.",
+            "parameters":  [
                 {
                     "title": "Search Job ID",
-                    "description": "ID of the search job whose status you want to retrieve from Sumo Logic.",
+                    "description": "Specify the ID of the search job whose status you want to retrieve from Sumo Logic.",
+                    "tooltip": "Specify the ID of the search job whose status you want to retrieve from Sumo Logic.",
                     "type": "text",
                     "name": "searchJobId",
                     "required": true,
@@ -148,13 +150,14 @@
             "title": "Get Messages Founded by Search Job",
             "category": "investigation",
             "annotation": "get_messages_founded_by_search_job",
-            "description": "Retrieves messages found by a search job from Sumo Logic based on the search job ID, offset, and limit you have specified.",
+            "description": "Retrieves messages found by a search job from Sumo Logic based on the search job ID and pagination parameters you have specified.",
             "parameters": [
                 {
                     "title": "Search Job ID",
                     "type": "text",
                     "name": "searchJobId",
-                    "description": "ID of the search job whose messages you want to retrieve from Sumo Logic.",
+                    "description": "Specify the ID of the search job whose messages you want to retrieve from Sumo Logic.",
+                    "tooltip": "Specify the ID of the search job whose messages you want to retrieve from Sumo Logic.",
                     "required": true,
                     "visible": true,
                     "editable": true
@@ -162,22 +165,22 @@
                 {
                     "title": "Offset",
                     "type": "integer",
-                    "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0.",
+                    "description": "Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0.",
                     "name": "offset",
                     "required": true,
                     "visible": true,
                     "editable": true,
-                    "tooltip": "Returns the message first start at position 0."
+                    "tooltip": "Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0."
                 },
                 {
                     "title": "Limit",
                     "type": "integer",
-                    "description": "Maximum number of messages, per page, that this operation should return.",
+                    "description": "Specify the maximum number of messages, per page, that this operation should return.",
                     "name": "limit",
                     "required": true,
                     "visible": true,
                     "editable": true,
-                    "tooltip": "The number of messages starting at offset to return. Note: Valid range is 1 to 10000 messages or 100 MB in total message size."
+                    "tooltip": "Specify the maximum number of messages, per page, that this operation should return."
                 }
             ],
             "enabled": true,
@@ -252,11 +255,12 @@
             "title": "Get Records Founded by Search Job",
             "category": "investigation",
             "annotation": "get_records_founded_by_search_job",
-            "description": "Retrieves records found by a search job from Sumo Logic based on the search job ID, offset, and limit you have specified.",
+            "description": "Retrieves records found by a search job from Sumo Logic based on the search job ID and pagination parameters you have specified.",
             "parameters": [
                 {
                     "title": "Search Job ID",
-                    "description": "ID of the search job whose records you want to retrieve from Sumo Logic.",
+                    "description": "Specify the ID of the search job whose records you want to retrieve from Sumo Logic.",
+                    "tooltip": "Specify the ID of the search job whose records you want to retrieve from Sumo Logic.",
                     "type": "text",
                     "name": "searchJobId",
                     "required": true,
@@ -266,22 +270,22 @@
                 {
                     "title": "Offset",
                     "type": "integer",
-                    "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say records starting from the 10th record. By default, this is set as 0.",
+                    "description": "Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0.",
                     "name": "offset",
                     "required": true,
                     "visible": true,
                     "editable": true,
-                    "tooltip": "Return records starting at this offset."
+                    "tooltip": "Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0."
                 },
                 {
                     "title": "Limit",
                     "type": "integer",
-                    "description": "Maximum number of messages, per page, that this operation should return.",
+                    "description": "Specify the maximum number of messages, per page, that this operation should return.",
                     "name": "limit",
                     "required": true,
                     "visible": true,
                     "editable": true,
-                    "tooltip": "The number of messages starting at offset to return. Note: Valid range is 1 to 10000 messages."
+                    "tooltip": "Specify the maximum number of messages, per page, that this operation should return."
                 }
             ],
             "enabled": true,
@@ -314,7 +318,8 @@
                     "title": "Search Job ID",
                     "type": "text",
                     "name": "searchJobId",
-                    "description": "ID of the search job that you want to delete from Sumo Logic.",
+                    "description": "Specify the ID of the search job that you want to delete from Sumo Logic.",
+                    "tooltip": "Specify the ID of the search job that you want to delete from Sumo Logic.",
                     "required": true,
                     "visible": true,
                     "editable": true
@@ -330,7 +335,7 @@
             "title": "Get the List of All Insights",
             "category": "investigation",
             "annotation": "get_list_of_all_insights",
-            "description": "Note: This API will not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
+            "description": "Retrieves a list of insights from the Sumo Logic Server.NOTE: This API does not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
             "parameters": [],
             "enabled": true,
             "output_schema": {
@@ -356,17 +361,17 @@
             "title": "Get Details By Insights ID",
             "category": "investigation",
             "annotation": "get_details_by_insights_id",
-            "description": "Note: This API will not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
+            "description": "Retrieves details of an insight from the Sumo Logic based on the insight ID that you have specified. NOTE: This API does not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
             "parameters": [
                 {
                     "title": "Insights ID",
                     "type": "text",
-                    "description": "ID of the search insights that you want to retrieve from Sumo Logic.",
+                    "description": "Specify the ID of the search insights that you want to retrieve from Sumo Logic.",
                     "name": "insights_id",
                     "required": true,
                     "visible": true,
                     "editable": true,
-                    "tooltip": "Returns the message first start at position 0."
+                    "tooltip": "Specify the ID of the search insights that you want to retrieve from Sumo Logic."
                 }
             ],
             "enabled": true,
@@ -393,51 +398,49 @@
             "title": "Get the List of Insights By Query",
             "category": "investigation",
             "annotation": "get_list_of_insights_by_query",
-            "description": "Note: This API will not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
+            "description": "Retrieves a list of insights from the Sumo Logic based on the query, pagination, and other input parameters that you have specified. NOTE: This API does not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
             "parameters": [
                 {
                     "title": "Query",
                     "type": "text",
                     "name": "query",
                     "required": false,
-                    "description": "Query of the search insights that you want to retrieve from Sumo Logic.",
+                    "description": "Specify the query using which you want to search insights in Sumo Logic.",
                     "visible": true,
                     "editable": true,
-                    "value": "",
-                    "tooltip": "Returns the message first start at position 0."
+                    "tooltip": "Specify the query using which you want to search insights in Sumo Logic."
                 },
                 {
                     "title": "Offset",
-                    "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say records starting from the 10th record. By default, this is set as 0.",
+                    "description": "Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0.",
                     "type": "integer",
                     "name": "offset",
                     "required": false,
                     "visible": true,
                     "editable": true,
                     "value": 0,
-                    "tooltip": "Returns the message first start at position 0."
+                    "tooltip": "Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0."
                 },
                 {
                     "title": "Limit",
                     "type": "integer",
-                    "description": "Maximum number of messages, per page, that this operation should return.",
+                    "description": "Specify the maximum number of messages, per page, that this operation should return.",
                     "name": "limit",
                     "required": false,
                     "visible": true,
                     "editable": true,
                     "value": 50,
-                    "tooltip": "The number of messages starting at offset to return. Note: Valid range is 1 to 10000 messages or 100 MB in total message size."
+                    "tooltip": "Specify the maximum number of messages, per page, that this operation should return."
                 },
                 {
                     "title": "Record Summary Fields",
                     "type": "text",
                     "name": "recordSummaryFields",
-                    "description": "Specify the record summary field",
+                    "description": "Specify the record summary field.",
                     "required": true,
                     "visible": true,
                     "editable": true,
                     "placeholder": "Eg: action,description",
-                    "value": "",
                     "tooltip": "Specify the record summary field."
                 }
             ],

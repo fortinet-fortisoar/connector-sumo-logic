@@ -18,7 +18,7 @@
           "uuid": "bca48681-443b-48db-a52b-e13cb0da3f55",
           "collection": "/api/3/workflow_collections/6f1b5aee-e2cb-4d4b-8487-fe851a89327a",
           "triggerLimit": null,
-          "description": "Creates a search job based on the specified query and time range in Sumo Logic.",
+          "description": "Creates a search job in Sumo Logic based on the specified query, time range, and other input parameters that you have specified.",
           "name": "Create Search Job",
           "tag": "#Sumo Logic",
           "recordTags": [
@@ -98,7 +98,7 @@
           "uuid": "cc5711df-63e2-464a-ad6c-a026de09a021",
           "collection": "/api/3/workflow_collections/6f1b5aee-e2cb-4d4b-8487-fe851a89327a",
           "triggerLimit": null,
-          "description": "Retrieves the current status of a search job from Sumo Logic based on the search job ID you have specified.",
+          "description": "Retrieves the current status of a search job from Sumo Logic based on the search job ID and pagination parameters you have specified.",
           "name": "Get Search Job Status",
           "tag": "#Sumo Logic",
           "recordTags": [
@@ -178,7 +178,7 @@
           "uuid": "0bb39245-c59f-4532-9699-c69897b5c470",
           "collection": "/api/3/workflow_collections/6f1b5aee-e2cb-4d4b-8487-fe851a89327a",
           "triggerLimit": null,
-          "description": "Retrieves messages found by a search job from Sumo Logic based on the search job ID, offset, and limit you have specified.",
+          "description": "Retrieves messages found by a search job from Sumo Logic based on the search job ID and pagination parameters you have specified.",
           "name": "Get Messages Founded by Search Job",
           "tag": "#Sumo Logic",
           "recordTags": [
@@ -258,7 +258,7 @@
           "uuid": "e89ca1f4-347b-44ae-88fa-e1cd481cedca",
           "collection": "/api/3/workflow_collections/6f1b5aee-e2cb-4d4b-8487-fe851a89327a",
           "triggerLimit": null,
-          "description": "Retrieves records found by a search job from Sumo Logic based on the search job ID, offset, and limit you have specified.",
+          "description": "Retrieves records found by a search job from Sumo Logic based on the search job ID and pagination parameters you have specified.",
           "name": "Get Records Founded by Search Job",
           "tag": "#Sumo Logic",
           "recordTags": [
@@ -418,7 +418,7 @@
           "uuid": "e7ebc07c-66ca-4684-8159-53351db84bb2",
           "collection": "/api/3/workflow_collections/6f1b5aee-e2cb-4d4b-8487-fe851a89327a",
           "triggerLimit": null,
-          "description": "Note: This API will not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
+          "description": "Retrieves a list of insights from the Sumo Logic Server. NOTE: This API does not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
           "name": "Get the List of All Insights",
           "tag": "#Sumo Logic",
           "recordTags": [
@@ -498,7 +498,7 @@
           "uuid": "1e280ce6-5c8b-4f7f-8a05-c7fa66b7957b",
           "collection": "/api/3/workflow_collections/6f1b5aee-e2cb-4d4b-8487-fe851a89327a",
           "triggerLimit": null,
-          "description": "Note: This API will not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
+          "description": "Retrieves details of an insight from the Sumo Logic based on the insight ID that you have specified. NOTE: This API does not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
           "name": "Get Details By Insights ID",
           "tag": "#Sumo Logic",
           "recordTags": [
@@ -578,7 +578,7 @@
           "uuid": "7b654197-e149-488a-91e1-cdce1138a023",
           "collection": "/api/3/workflow_collections/6f1b5aee-e2cb-4d4b-8487-fe851a89327a",
           "triggerLimit": null,
-          "description": "Note: This API will not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
+          "description": "Retrieves a list of insights from the Sumo Logic based on the query, pagination, and other input parameters that you have specified. NOTE: This API does not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
           "name": "Get the List of Insights By Query",
           "tag": "#Sumo Logic",
           "recordTags": [
