@@ -1,5 +1,2 @@
 ## What's Fixed
-### Added Operations:
-- Get Insights List By Query 
-- Get All Insights List 
-- Get Insight Details By ID
+- Fixed the Search Job related functions/actions as per Sumo Logic API reference document.
