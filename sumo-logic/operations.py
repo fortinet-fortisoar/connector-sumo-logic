@@ -67,7 +67,7 @@ def _get_token(access_id, access_key):
         raise ConnectorError(Err)
 
 
-def _api_request(url, config, method='get', payload={}, json_format=True, params=None):
+def _api_request(url, config, method='get', payload={}, json_format=True, params=None, cookies=None):
     try:
         server_url, access_id, access_key, verify_ssl = _get_config(config)
         if not server_url.startswith('https://'):
@@ -76,10 +76,11 @@ def _api_request(url, config, method='get', payload={}, json_format=True, params
         token = _get_token(access_id, access_key)
         header = {
             'Content-Type': 'application/json',
+            'Accept': 'application/json',
             'Authorization': 'Basic ' + token
         }
         request_url = server_url + url
-        api_response = requests.request(method=method, url=request_url, headers=header,
+        api_response = requests.request(method=method, url=request_url, headers=header, cookies=cookies,
                                         data=json.dumps(payload), params=params, verify=verify_ssl)
         if api_response.ok:
             if json_format == True:
@@ -95,6 +96,42 @@ def _api_request(url, config, method='get', payload={}, json_format=True, params
                 api_response.content)))
     except Exception as Err:
         raise ConnectorError(Err)
+
+
+# Adding new function for receiving cookies after api requests and merging them with results.
+def _api_request_for_create_search_job(url, config, method='get', payload={}, json_format=True, params=None, cookies=None):
+    try:
+        server_url, access_id, access_key, verify_ssl = _get_config(config)
+        if not server_url.startswith('https://'):
+            server_url = 'https://' + server_url
+
+        token = _get_token(access_id, access_key)
+        header = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Basic ' + token
+        }
+        request_url = server_url + url
+        api_response = requests.request(method=method, url=request_url, headers=header, cookies=cookies,
+                                        data=json.dumps(payload), params=params, verify=verify_ssl)
+        if api_response.ok:
+            if json_format == True:
+                cookies_data=api_response.cookies.get_dict()
+                results=api_response.json()
+                results['cookies']=cookies_data
+                return results
+            else:
+                return api_response.content
+        elif api_response.status_code in ERROR_MSG:
+            raise ConnectorError(ERROR_MSG[api_response.status_code])
+        else:
+            logger.info('Fail To request API {0} response is : {1}'.format(str(url), str(
+                api_response.content)))
+            raise ConnectorError('Fail To request API {0} response is :{1}'.format(str(url), str(
+                api_response.content)))
+    except Exception as Err:
+        raise ConnectorError(Err)
+
 
 def _get_list_from_str_or_list(params, parameter):
     try:
@@ -129,6 +166,7 @@ def check_health(config):
     except Exception as err:
         raise ConnectorError(str(err))
 
+
 def create_search_job(config, params):
     try:
         param = {
@@ -137,7 +175,9 @@ def create_search_job(config, params):
             "to": _get_input(params, "to").split()[0][:19],
             "timeZone": _get_input(params, "timeZone")
         }
-        return _api_request(CREATE_SEARCH_JOB, config, payload=param, method="post")
+        cookies = {
+        }
+        return _api_request_for_create_search_job(CREATE_SEARCH_JOB, config, payload=param, method="post", cookies=cookies)
     except Exception as Err:
         logger.exception(str(Err))
         raise ConnectorError(str(Err))
@@ -145,7 +185,8 @@ def create_search_job(config, params):
 
 def get_search_job_status(config, params):
     try:
-        return _api_request(SEARCH_JOB_STATUS.format(SEARCH_JOB_ID=params.get('searchJobId')), config)
+        cookies = params.get('cookies')
+        return _api_request(SEARCH_JOB_STATUS.format(SEARCH_JOB_ID=params.get('searchJobId')), config, cookies=cookies)
     except Exception as Err:
         logger.exception(str(Err))
         raise ConnectorError(str(Err))
@@ -156,9 +197,11 @@ def get_messages_founded_by_search_job(config, params):
         searchJobId = params.get('searchJobId')
         offset = params.get('offset')
         limit = params.get('limit')
+        cookies = params.get('cookies')
+
         return _api_request(
             GET_MESSAGE_BY_SEARCH_JOB.format(SEARCH_JOB_ID=searchJobId, OFFSET=offset, LIMIT=limit),
-            config)
+            config, cookies=cookies)
     except Exception as Err:
         logger.exception(str(Err))
         raise ConnectorError(str(Err))
@@ -169,9 +212,11 @@ def get_records_founded_by_search_job(config, params):
         searchJobId = params.get('searchJobId')
         offset = params.get('offset')
         limit = params.get('limit')
+        cookies = params.get('cookies')
+
         return _api_request(
             GET_RECORDS_BY_SEARCH_JOB.format(SEARCH_JOB_ID=searchJobId, OFFSET=offset, LIMIT=limit),
-            config)
+            config, cookies=cookies)
     except Exception as Err:
         logger.exception(str(Err))
         raise ConnectorError(str(Err))
@@ -180,8 +225,10 @@ def get_records_founded_by_search_job(config, params):
 def delete_search_job(config, params):
     try:
         searchJobId = params.get('searchJobId')
+        cookies = params.get('cookies')
+
         return _api_request(SEARCH_JOB_STATUS.format(SEARCH_JOB_ID=searchJobId), config,
-                            method='delete')
+                            method='delete', cookies=cookies)
     except Exception as Err:
         logger.exception(str(Err))
         raise ConnectorError(str(Err))
