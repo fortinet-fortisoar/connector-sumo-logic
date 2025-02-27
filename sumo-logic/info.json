@@ -1,5 +1,5 @@
 {
-    "name": "sumo-logic_dev",
+    "name": "sumo-logic",
     "version": "1.1.1",
     "label": "Sumo Logic",
     "description": "Sumo Logic provides best-in-class cloud monitoring, log management, Cloud SIEM tools, and real-time insights for web and SaaS based apps.",
@@ -130,8 +130,8 @@
                 {
                     "title": "Cookies",
                     "type": "text",
-					"description" : "Assign the value of cookies attribute from response of create search job step",
-					"tooltip" : "Assign the value of cookies attribute from response of create search job step",
+                    "description" : "Assign the value of cookies attribute from response of create search job step",
+                    "tooltip" : "Assign the value of cookies attribute from response of create search job step",
                     "name": "cookies",
                     "required": true,
                     "visible": true,
@@ -196,8 +196,8 @@
                 {
                     "title": "Cookies",
                     "type": "text",
-					"description" : "Assign the value of cookies attribute from response of create search job step",
-					"tooltip" : "Assign the value of cookies attribute from response of create search job step",
+                    "description" : "Assign the value of cookies attribute from response of create search job step",
+                    "tooltip" : "Assign the value of cookies attribute from response of create search job step",
                     "name": "cookies",
                     "required": true,
                     "visible": true,
@@ -312,8 +312,8 @@
                 {
                     "title": "Cookies",
                     "type": "text",
-					"description" : "Assign the value of cookies attribute from response of create search job step",
-					"tooltip" : "Assign the value of cookies attribute from response of create search job step",
+                    "description" : "Assign the value of cookies attribute from response of create search job step",
+                    "tooltip" : "Assign the value of cookies attribute from response of create search job step",
                     "name": "cookies",
                     "required": true,
                     "visible": true,
@@ -360,8 +360,8 @@
                 {
                     "title": "Cookies",
                     "type": "text",
-					"description" : "Assign the value of cookies attribute from response of create search job step",
-					"tooltip" : "Assign the value of cookies attribute from response of create search job step",
+                    "description" : "Assign the value of cookies attribute from response of create search job step",
+                    "tooltip" : "Assign the value of cookies attribute from response of create search job step",
                     "name": "cookies",
                     "required": true,
                     "visible": true,
