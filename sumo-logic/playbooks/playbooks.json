@@ -2,44 +2,44 @@
   "type": "workflow_collections",
   "data": [
     {
-      "uuid": "c40182c7-0f16-4c76-8632-7787222f778b",
+      "uuid": "022d5839-af0a-4e30-bb7b-bfc995dd8639",
       "@type": "WorkflowCollection",
       "name": "Sample - Sumo Logic - 1.1.1",
-      "description": "Sumo Logic connector provides application collect and analyze machine data",
+      "description": "Sumo Logic provides best-in-class cloud monitoring, log management, Cloud SIEM tools, and real-time insights for web and SaaS based apps.",
       "visible": true,
       "image": null,
       "recordTags": [
         "Sumo",
-        "sumo-logic_dev"
+        "sumo-logic"
       ],
       "workflows": [
         {
           "@type": "Workflow",
-          "uuid": "d893ebf3-6b81-4b35-8321-9e5dd6a1e9e5",
-          "collection": "/api/3/workflow_collections/c40182c7-0f16-4c76-8632-7787222f778b",
+          "uuid": "1cdf29e5-4c5c-4cb5-a58a-368d8c30970b",
+          "collection": "/api/3/workflow_collections/022d5839-af0a-4e30-bb7b-bfc995dd8639",
           "triggerLimit": null,
-          "description": "Creates a search job based on the specified query and time range in Sumo Logic.",
+          "description": "Creates a search job in Sumo Logic based on the specified query, time range, and other input parameters that you have specified.",
           "name": "Create Search Job",
           "tag": "#Sumo Logic",
           "recordTags": [
             "Sumo",
-            "sumo-logic_dev"
+            "sumo-logic"
           ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/7548dfdb-3275-4ae1-8e7a-10bf057d093b",
+          "triggerStep": "/api/3/workflow_steps/927e15ed-ab96-4a55-87e2-f9708e3972fe",
           "steps": [
             {
-              "uuid": "7548dfdb-3275-4ae1-8e7a-10bf057d093b",
+              "uuid": "927e15ed-ab96-4a55-87e2-f9708e3972fe",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "7ff18654-9222-4a63-8a1a-7a2a2ce840a7",
+                "route": "37b2bc71-daa7-4561-a5a1-e8f92453e734",
                 "title": "Sumo Logic: Create Search Job",
                 "resources": [
                   "alerts"
@@ -59,7 +59,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "6e34c614-0ad8-428a-976c-d5bc57784241",
+              "uuid": "7cfefefe-a5a2-427e-927b-a6322b015de2",
               "@type": "WorkflowStep",
               "name": "Create Search Job",
               "description": null,
@@ -69,7 +69,7 @@
                 "config": "''",
                 "params": [],
                 "version": "1.1.1",
-                "connector": "sumo-logic_dev",
+                "connector": "sumo-logic",
                 "operation": "create_search_job",
                 "operationTitle": "Create Search Job",
                 "step_variables": {
@@ -84,42 +84,42 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "97dd01e5-3b92-4ab2-a845-7e669798a42a",
+              "uuid": "0df55849-d99d-420d-bfb7-0d082ffa4569",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Create Search Job",
-              "sourceStep": "/api/3/workflow_steps/7548dfdb-3275-4ae1-8e7a-10bf057d093b",
-              "targetStep": "/api/3/workflow_steps/6e34c614-0ad8-428a-976c-d5bc57784241"
+              "sourceStep": "/api/3/workflow_steps/927e15ed-ab96-4a55-87e2-f9708e3972fe",
+              "targetStep": "/api/3/workflow_steps/7cfefefe-a5a2-427e-927b-a6322b015de2"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "86bc7b07-f7f0-4c51-b2bb-877e9b1e15a0",
-          "collection": "/api/3/workflow_collections/c40182c7-0f16-4c76-8632-7787222f778b",
+          "uuid": "0d1911cb-2cc6-4fbd-b603-281a14a03ecd",
+          "collection": "/api/3/workflow_collections/022d5839-af0a-4e30-bb7b-bfc995dd8639",
           "triggerLimit": null,
-          "description": "Retrieves the current status of a search job from Sumo Logic based on the search job ID you have specified.",
+          "description": "Retrieves the current status of a search job from Sumo Logic based on the search job ID and pagination parameters you have specified.",
           "name": "Get Search Job Status",
           "tag": "#Sumo Logic",
           "recordTags": [
             "Sumo",
-            "sumo-logic_dev"
+            "sumo-logic"
           ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/89e80bac-1101-4326-95d2-a869e42fa33c",
+          "triggerStep": "/api/3/workflow_steps/0a7884c4-427b-45bc-9281-ed489136bc49",
           "steps": [
             {
-              "uuid": "89e80bac-1101-4326-95d2-a869e42fa33c",
+              "uuid": "0a7884c4-427b-45bc-9281-ed489136bc49",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "7320db1d-1824-4c4f-a81d-da2385c8c718",
+                "route": "084ddc87-21bf-4259-8438-676b9eb3a029",
                 "title": "Sumo Logic: Get Search Job Status",
                 "resources": [
                   "alerts"
@@ -139,7 +139,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "c754fcc9-e13b-4ddf-9a8d-420d2a037af3",
+              "uuid": "a6314918-218f-4491-b4df-f55d84360b24",
               "@type": "WorkflowStep",
               "name": "Get Search Job Status",
               "description": null,
@@ -151,7 +151,7 @@
                   "cookies": ""
                 },
                 "version": "1.1.1",
-                "connector": "sumo-logic_dev",
+                "connector": "sumo-logic",
                 "operation": "get_search_job_status",
                 "operationTitle": "Get Search Job Status",
                 "step_variables": {
@@ -166,42 +166,42 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "de976a9c-2f67-489d-9b4e-6c99b5266025",
+              "uuid": "130b2ff0-44d9-4f62-bd72-9f0841d8aee2",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Get Search Job Status",
-              "sourceStep": "/api/3/workflow_steps/89e80bac-1101-4326-95d2-a869e42fa33c",
-              "targetStep": "/api/3/workflow_steps/c754fcc9-e13b-4ddf-9a8d-420d2a037af3"
+              "sourceStep": "/api/3/workflow_steps/0a7884c4-427b-45bc-9281-ed489136bc49",
+              "targetStep": "/api/3/workflow_steps/a6314918-218f-4491-b4df-f55d84360b24"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "77756bad-6101-445f-8b84-b9d0713ba4b2",
-          "collection": "/api/3/workflow_collections/c40182c7-0f16-4c76-8632-7787222f778b",
+          "uuid": "ddf4ad46-3b4f-4796-9988-b9ee0b5ea5af",
+          "collection": "/api/3/workflow_collections/022d5839-af0a-4e30-bb7b-bfc995dd8639",
           "triggerLimit": null,
-          "description": "Retrieves messages found by a search job from Sumo Logic based on the search job ID, offset, and limit you have specified.",
+          "description": "Retrieves messages found by a search job from Sumo Logic based on the search job ID and pagination parameters you have specified.",
           "name": "Get Messages Founded by Search Job",
           "tag": "#Sumo Logic",
           "recordTags": [
             "Sumo",
-            "sumo-logic_dev"
+            "sumo-logic"
           ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/b9b3144e-0d59-4604-bce2-a850a632dee8",
+          "triggerStep": "/api/3/workflow_steps/7a9fbaa3-12a8-4faf-88c4-17bc21f73b83",
           "steps": [
             {
-              "uuid": "b9b3144e-0d59-4604-bce2-a850a632dee8",
+              "uuid": "7a9fbaa3-12a8-4faf-88c4-17bc21f73b83",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "96bf660e-987f-4894-aaa9-5f5641fb58c7",
+                "route": "e5bca18d-62aa-459e-8dd6-74bed2d1f854",
                 "title": "Sumo Logic: Get Messages Founded by Search Job",
                 "resources": [
                   "alerts"
@@ -221,7 +221,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "c7c0046a-fd41-4679-8bd0-7bd968553250",
+              "uuid": "dcdb358f-0ba6-4cab-82a5-7e853327f65c",
               "@type": "WorkflowStep",
               "name": "Get Messages Founded by Search Job",
               "description": null,
@@ -233,7 +233,7 @@
                   "cookies": ""
                 },
                 "version": "1.1.1",
-                "connector": "sumo-logic_dev",
+                "connector": "sumo-logic",
                 "operation": "get_messages_founded_by_search_job",
                 "operationTitle": "Get Messages Founded by Search Job",
                 "step_variables": {
@@ -248,42 +248,42 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "facc6203-af01-4d88-b63c-1c5279f15ee4",
+              "uuid": "3054d41a-d2a5-43ce-8ebf-fa25fa715d71",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Get Messages Founded by Search Job",
-              "sourceStep": "/api/3/workflow_steps/b9b3144e-0d59-4604-bce2-a850a632dee8",
-              "targetStep": "/api/3/workflow_steps/c7c0046a-fd41-4679-8bd0-7bd968553250"
+              "sourceStep": "/api/3/workflow_steps/7a9fbaa3-12a8-4faf-88c4-17bc21f73b83",
+              "targetStep": "/api/3/workflow_steps/dcdb358f-0ba6-4cab-82a5-7e853327f65c"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "3926a48f-26ea-4e7a-a288-0da8686aee11",
-          "collection": "/api/3/workflow_collections/c40182c7-0f16-4c76-8632-7787222f778b",
+          "uuid": "fecf4175-b150-4b7e-bc4f-03b1a0769cd1",
+          "collection": "/api/3/workflow_collections/022d5839-af0a-4e30-bb7b-bfc995dd8639",
           "triggerLimit": null,
-          "description": "Retrieves records found by a search job from Sumo Logic based on the search job ID, offset, and limit you have specified.",
+          "description": "Retrieves records found by a search job from Sumo Logic based on the search job ID and pagination parameters you have specified.",
           "name": "Get Records Founded by Search Job",
           "tag": "#Sumo Logic",
           "recordTags": [
             "Sumo",
-            "sumo-logic_dev"
+            "sumo-logic"
           ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/fa084008-fcb4-4414-af0a-b7424e9dd31e",
+          "triggerStep": "/api/3/workflow_steps/2984d8c3-dd0e-40bf-afe0-0f6e5044961a",
           "steps": [
             {
-              "uuid": "fa084008-fcb4-4414-af0a-b7424e9dd31e",
+              "uuid": "2984d8c3-dd0e-40bf-afe0-0f6e5044961a",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "f52b3531-c888-4094-b65d-1158e7d7f125",
+                "route": "b69f8b81-350d-4717-9d48-04c673adfa36",
                 "title": "Sumo Logic: Get Records Founded by Search Job",
                 "resources": [
                   "alerts"
@@ -303,7 +303,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "cb5b55b3-2a88-4b7d-896e-03b6cb944b96",
+              "uuid": "41105890-baa6-4175-a522-335104a97458",
               "@type": "WorkflowStep",
               "name": "Get Records Founded by Search Job",
               "description": null,
@@ -315,7 +315,7 @@
                   "cookies": ""
                 },
                 "version": "1.1.1",
-                "connector": "sumo-logic_dev",
+                "connector": "sumo-logic",
                 "operation": "get_records_founded_by_search_job",
                 "operationTitle": "Get Records Founded by Search Job",
                 "step_variables": {
@@ -330,42 +330,42 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "a30078db-4d68-4d9c-ac48-ef5aaef5f995",
+              "uuid": "b4ffd2e9-eea3-4311-a16c-4207c113310d",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Get Records Founded by Search Job",
-              "sourceStep": "/api/3/workflow_steps/fa084008-fcb4-4414-af0a-b7424e9dd31e",
-              "targetStep": "/api/3/workflow_steps/cb5b55b3-2a88-4b7d-896e-03b6cb944b96"
+              "sourceStep": "/api/3/workflow_steps/2984d8c3-dd0e-40bf-afe0-0f6e5044961a",
+              "targetStep": "/api/3/workflow_steps/41105890-baa6-4175-a522-335104a97458"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "419f7bc1-c072-4c96-80ce-5a6f04eba044",
-          "collection": "/api/3/workflow_collections/c40182c7-0f16-4c76-8632-7787222f778b",
+          "uuid": "cdc76e8a-b100-4fc3-8688-b98fb105d405",
+          "collection": "/api/3/workflow_collections/022d5839-af0a-4e30-bb7b-bfc995dd8639",
           "triggerLimit": null,
           "description": "Deletes a search job from Sumo Logic based on the search job ID you have specified.",
           "name": "Delete Search Job",
           "tag": "#Sumo Logic",
           "recordTags": [
             "Sumo",
-            "sumo-logic_dev"
+            "sumo-logic"
           ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/1fa529fc-67a7-4628-9470-263406d31b00",
+          "triggerStep": "/api/3/workflow_steps/b6a09a2f-f080-4b7c-b939-5adf6c673168",
           "steps": [
             {
-              "uuid": "1fa529fc-67a7-4628-9470-263406d31b00",
+              "uuid": "b6a09a2f-f080-4b7c-b939-5adf6c673168",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "528296b3-9c84-429a-81fe-7999913691c0",
+                "route": "0defd6bb-b066-42b1-8a03-dc5316914f79",
                 "title": "Sumo Logic: Delete Search Job",
                 "resources": [
                   "alerts"
@@ -385,7 +385,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "03067eb8-7f45-4073-affb-154d08b3e5f9",
+              "uuid": "e36d04bb-9d95-4ac2-81ef-de808eabcab3",
               "@type": "WorkflowStep",
               "name": "Delete Search Job",
               "description": null,
@@ -397,7 +397,7 @@
                   "cookies": ""
                 },
                 "version": "1.1.1",
-                "connector": "sumo-logic_dev",
+                "connector": "sumo-logic",
                 "operation": "delete_search_job",
                 "operationTitle": "Delete Search Job",
                 "step_variables": {
@@ -412,42 +412,42 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "437f2117-daf6-4abd-bddc-a01e5999837b",
+              "uuid": "c537d0af-00f4-4101-9563-29daec8aa922",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Delete Search Job",
-              "sourceStep": "/api/3/workflow_steps/1fa529fc-67a7-4628-9470-263406d31b00",
-              "targetStep": "/api/3/workflow_steps/03067eb8-7f45-4073-affb-154d08b3e5f9"
+              "sourceStep": "/api/3/workflow_steps/b6a09a2f-f080-4b7c-b939-5adf6c673168",
+              "targetStep": "/api/3/workflow_steps/e36d04bb-9d95-4ac2-81ef-de808eabcab3"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "29609351-f6bc-4470-9529-04ce9cf3aaee",
-          "collection": "/api/3/workflow_collections/c40182c7-0f16-4c76-8632-7787222f778b",
+          "uuid": "be088eba-2d29-45e9-b5d9-584cab49f1a9",
+          "collection": "/api/3/workflow_collections/022d5839-af0a-4e30-bb7b-bfc995dd8639",
           "triggerLimit": null,
-          "description": "Note: This API will not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
+          "description": "Retrieves a list of insights from the Sumo Logic Server.NOTE: This API does not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
           "name": "Get the List of All Insights",
           "tag": "#Sumo Logic",
           "recordTags": [
             "Sumo",
-            "sumo-logic_dev"
+            "sumo-logic"
           ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/20883a97-ff85-4d93-a253-4a1f41aad8b2",
+          "triggerStep": "/api/3/workflow_steps/32f7e8c1-9d3a-4e41-9d33-0a38e2dbc829",
           "steps": [
             {
-              "uuid": "20883a97-ff85-4d93-a253-4a1f41aad8b2",
+              "uuid": "32f7e8c1-9d3a-4e41-9d33-0a38e2dbc829",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "83fb0ca2-a967-45c7-a488-0e0f88182f8f",
+                "route": "5306aed0-bfc9-4e9a-8b70-fa4e32aee1dc",
                 "title": "Sumo Logic: Get the List of All Insights",
                 "resources": [
                   "alerts"
@@ -467,7 +467,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "a1e9c08d-71cd-459f-bd1a-1339aba17fc3",
+              "uuid": "38a57cbd-1155-4bc5-bb11-bb37d8020e72",
               "@type": "WorkflowStep",
               "name": "Get the List of All Insights",
               "description": null,
@@ -477,7 +477,7 @@
                 "config": "''",
                 "params": [],
                 "version": "1.1.1",
-                "connector": "sumo-logic_dev",
+                "connector": "sumo-logic",
                 "operation": "get_list_of_all_insights",
                 "operationTitle": "Get the List of All Insights",
                 "step_variables": {
@@ -492,43 +492,43 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "b1e75b83-140a-4195-8454-8134ba04a4c1",
+              "uuid": "85a7ae11-04a7-494d-a4e9-492a1353eec2",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Get the List of All Insights",
-              "sourceStep": "/api/3/workflow_steps/20883a97-ff85-4d93-a253-4a1f41aad8b2",
-              "targetStep": "/api/3/workflow_steps/a1e9c08d-71cd-459f-bd1a-1339aba17fc3"
+              "sourceStep": "/api/3/workflow_steps/32f7e8c1-9d3a-4e41-9d33-0a38e2dbc829",
+              "targetStep": "/api/3/workflow_steps/38a57cbd-1155-4bc5-bb11-bb37d8020e72"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "6fb23b93-76c9-4cfb-aa9f-0a35a682d879",
-          "collection": "/api/3/workflow_collections/c40182c7-0f16-4c76-8632-7787222f778b",
+          "uuid": "3db6afd0-5075-4026-ac99-e07d0dc56eae",
+          "collection": "/api/3/workflow_collections/022d5839-af0a-4e30-bb7b-bfc995dd8639",
           "triggerLimit": null,
-          "description": "Note: This API will not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
-          "name": "Get By Insights ID",
+          "description": "Retrieves details of an insight from the Sumo Logic based on the insight ID that you have specified. NOTE: This API does not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
+          "name": "Get Details By Insights ID",
           "tag": "#Sumo Logic",
           "recordTags": [
             "Sumo",
-            "sumo-logic_dev"
+            "sumo-logic"
           ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/4554f762-e58b-48b3-bbdb-c6b2dfcfc907",
+          "triggerStep": "/api/3/workflow_steps/251270c5-398d-4aa4-a2d7-2a5946cdd6e9",
           "steps": [
             {
-              "uuid": "4554f762-e58b-48b3-bbdb-c6b2dfcfc907",
+              "uuid": "251270c5-398d-4aa4-a2d7-2a5946cdd6e9",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "0338f7f9-7318-45c2-86d4-00325a6cc725",
-                "title": "Sumo Logic: Get By Insights ID",
+                "route": "a1c9aba3-c9e2-4032-9959-f3067294df47",
+                "title": "Sumo Logic: Get Details By Insights ID",
                 "resources": [
                   "alerts"
                 ],
@@ -547,9 +547,9 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "90d64094-d847-4d81-97c2-ef38a1f8c0b0",
+              "uuid": "79d2687e-33ec-47f1-80d2-41129e041c65",
               "@type": "WorkflowStep",
-              "name": "Get By Insights ID",
+              "name": "Get Details By Insights ID",
               "description": null,
               "status": null,
               "arguments": {
@@ -557,9 +557,9 @@
                 "config": "''",
                 "params": [],
                 "version": "1.1.1",
-                "connector": "sumo-logic_dev",
-                "operation": "get_by_insights_id",
-                "operationTitle": "Get By Insights ID",
+                "connector": "sumo-logic",
+                "operation": "get_details_by_insights_id",
+                "operationTitle": "Get Details By Insights ID",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
@@ -572,42 +572,42 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "9b054797-1fc4-4952-ac25-37d6c0fed209",
+              "uuid": "0031a83a-f424-4b5c-a0c1-30d0d4e2fb45",
               "label": null,
               "isExecuted": false,
-              "name": "Start-> Get By Insights ID",
-              "sourceStep": "/api/3/workflow_steps/4554f762-e58b-48b3-bbdb-c6b2dfcfc907",
-              "targetStep": "/api/3/workflow_steps/90d64094-d847-4d81-97c2-ef38a1f8c0b0"
+              "name": "Start-> Get Details By Insights ID",
+              "sourceStep": "/api/3/workflow_steps/251270c5-398d-4aa4-a2d7-2a5946cdd6e9",
+              "targetStep": "/api/3/workflow_steps/79d2687e-33ec-47f1-80d2-41129e041c65"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "3930b3d2-210e-42d7-92dc-64c0b653fd4c",
-          "collection": "/api/3/workflow_collections/c40182c7-0f16-4c76-8632-7787222f778b",
+          "uuid": "a3055091-692a-46aa-ba1d-70a91683ffd7",
+          "collection": "/api/3/workflow_collections/022d5839-af0a-4e30-bb7b-bfc995dd8639",
           "triggerLimit": null,
-          "description": "Note: This API will not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
+          "description": "Retrieves a list of insights from the Sumo Logic based on the query, pagination, and other input parameters that you have specified. NOTE: This API does not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
           "name": "Get the List of Insights By Query",
           "tag": "#Sumo Logic",
           "recordTags": [
             "Sumo",
-            "sumo-logic_dev"
+            "sumo-logic"
           ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/d9e41514-e653-4199-86f2-4ccea15b258d",
+          "triggerStep": "/api/3/workflow_steps/2a743727-d6ff-4685-843c-9461ad498eec",
           "steps": [
             {
-              "uuid": "d9e41514-e653-4199-86f2-4ccea15b258d",
+              "uuid": "2a743727-d6ff-4685-843c-9461ad498eec",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "f39d27a5-95a8-4af2-9586-c6210275092b",
+                "route": "7e2a5c23-c619-4774-bf80-e36fa4906869",
                 "title": "Sumo Logic: Get the List of Insights By Query",
                 "resources": [
                   "alerts"
@@ -627,7 +627,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "d389f269-6eca-492e-a037-acd75c95e153",
+              "uuid": "46503553-849a-4a13-a6a2-3656dcc28612",
               "@type": "WorkflowStep",
               "name": "Get the List of Insights By Query",
               "description": null,
@@ -636,13 +636,11 @@
                 "name": "Sumo Logic",
                 "config": "''",
                 "params": {
-                  "query": "",
                   "offset": 0,
-                  "limit": 50,
-                  "recordSummaryFields": "action,description,device_hostname,device_ip,dstDevice_hostname,dstDevice_ip,email_sender,file_basename,file_hash_md5,file_hash_sha1,file_hash_sha256,srcDevice_hostname,srcDevice_ip,threat_name,threat_category,threat_identifier,user_username,threat_url,listMatches"
+                  "limit": 50
                 },
                 "version": "1.1.1",
-                "connector": "sumo-logic_dev",
+                "connector": "sumo-logic",
                 "operation": "get_list_of_insights_by_query",
                 "operationTitle": "Get the List of Insights By Query",
                 "step_variables": {
@@ -657,12 +655,12 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "a45786ac-f16a-49a4-a880-396dd097d3f4",
+              "uuid": "1df2aa0d-2fe2-4bcf-b536-3b190db1a574",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Get the List of Insights By Query",
-              "sourceStep": "/api/3/workflow_steps/d9e41514-e653-4199-86f2-4ccea15b258d",
-              "targetStep": "/api/3/workflow_steps/d389f269-6eca-492e-a037-acd75c95e153"
+              "sourceStep": "/api/3/workflow_steps/2a743727-d6ff-4685-843c-9461ad498eec",
+              "targetStep": "/api/3/workflow_steps/46503553-849a-4a13-a6a2-3656dcc28612"
             }
           ]
         }
