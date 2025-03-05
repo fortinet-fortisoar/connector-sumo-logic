@@ -1,6 +1,6 @@
 {
     "name": "sumo-logic",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "label": "Sumo Logic",
     "description": "Sumo Logic provides best-in-class cloud monitoring, log management, Cloud SIEM tools, and real-time insights for web and SaaS based apps.",
     "publisher": "SpryIQ.Co",
@@ -126,6 +126,17 @@
                     "required": true,
                     "visible": true,
                     "editable": true
+                },
+                {
+                    "title": "Cookies",
+                    "type": "text",
+                    "description" : "Assign the value of cookies attribute from response of create search job step",
+                    "tooltip" : "Assign the value of cookies attribute from response of create search job step",
+                    "name": "cookies",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": ""
                 }
             ],
             "enabled": true,
@@ -181,6 +192,17 @@
                     "visible": true,
                     "editable": true,
                     "tooltip": "Specify the maximum number of messages, per page, that this operation should return."
+                },
+                {
+                    "title": "Cookies",
+                    "type": "text",
+                    "description" : "Assign the value of cookies attribute from response of create search job step",
+                    "tooltip" : "Assign the value of cookies attribute from response of create search job step",
+                    "name": "cookies",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": ""
                 }
             ],
             "enabled": true,
@@ -286,6 +308,17 @@
                     "visible": true,
                     "editable": true,
                     "tooltip": "Specify the maximum number of messages, per page, that this operation should return."
+                },
+                {
+                    "title": "Cookies",
+                    "type": "text",
+                    "description" : "Assign the value of cookies attribute from response of create search job step",
+                    "tooltip" : "Assign the value of cookies attribute from response of create search job step",
+                    "name": "cookies",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": ""
                 }
             ],
             "enabled": true,
@@ -323,6 +356,17 @@
                     "required": true,
                     "visible": true,
                     "editable": true
+                },
+                {
+                    "title": "Cookies",
+                    "type": "text",
+                    "description" : "Assign the value of cookies attribute from response of create search job step",
+                    "tooltip" : "Assign the value of cookies attribute from response of create search job step",
+                    "name": "cookies",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": ""
                 }
             ],
             "enabled": true,
