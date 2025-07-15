@@ -13,6 +13,7 @@ logger = get_logger('sumo_logic')
 class SumoLogic(Connector):
     def execute(self, config, operation, params, **kwargs):
         logger.info('In execute() Operation:[{}]'.format(operation))
+        params.update({'operation': operation})
         operation = sumo_logic_ops.get(operation, None)
         if not operation:
             logger.info('Unsupported operation [{}]'.format(operation))

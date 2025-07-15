@@ -1,512 +1,940 @@
 {
-    "name": "sumo-logic",
-    "version": "1.1.1",
-    "label": "Sumo Logic",
-    "description": "Sumo Logic provides best-in-class cloud monitoring, log management, Cloud SIEM tools, and real-time insights for web and SaaS based apps.",
-    "contributor": "Rohan Patil",
-    "publisher": "SpryIQ.Co",
-    "icon_small_name": "sumologic_small.png",
-    "help_online": "https://docs.fortinet.com/document/fortisoar/1.1.1/sumo-logic/1034/sumo-logic-v1-1-1",
-    "category": "Monitoring",
-    "cs_approved": false,
-    "cs_compatible": true,
-    "icon_large_name": "sumologic_medium.png",
-    "configuration": {
-        "fields": [
+   "name":"sumo-logic",
+   "version":"1.2.0",
+   "label":"Sumo Logic",
+   "description":"Sumo Logic provides best-in-class cloud monitoring, log management, Cloud SIEM tools, and real-time insights for web and SaaS based apps.",
+   "contributor":"Rohan Patil, Naili.M (Fortinet)",
+   "publisher":"SpryIQ.Co",
+   "icon_small_name":"sumologic_small.png",
+   "help_online":"https://docs.fortinet.com/document/fortisoar/1.2.0/sumo-logic/1034/sumo-logic-v1-1-1",
+   "category":"Monitoring",
+   "cs_approved":false,
+   "cs_compatible":true,
+   "icon_large_name":"sumologic_medium.png",
+   "ingestion_modes":[
+      "scheduled"
+   ],
+   "ingestion_supported":true,
+   "ingestion_preferences": {"launch_name": "Start Data Ingestion Config"},
+   "configuration":{
+      "fields":[
+         {
+            "title":"Server URL",
+            "type":"text",
+            "name":"server_url",
+            "required":true,
+            "visible":true,
+            "editable":true,
+            "tooltip":"API Endpoint, For e.g: https://api.us2.sumologic.com",
+            "description":"URL of the Sumo Logic API server to which you will connect and perform automated operations."
+         },
+         {
+            "title":"Access ID",
+            "description":"ID required to access the Sumo Logic API.",
+            "type":"text",
+            "name":"access_id",
+            "required":true,
+            "visible":true,
+            "editable":true
+         },
+         {
+            "title":"Access Key",
+            "description":"Key to access the Sumo Logic API.",
+            "type":"password",
+            "name":"access_key",
+            "required":true,
+            "visible":true,
+            "editable":true
+         },
+         {
+            "title":"Verify SSL",
+            "description":"Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True.",
+            "type":"checkbox",
+            "name":"verify_ssl",
+            "required":false,
+            "visible":true,
+            "editable":true,
+            "value":true
+         }
+      ]
+   },
+   "operations":[
+      {
+         "operation":"create_search_job",
+         "title":"Create Search Job",
+         "category":"investigation",
+         "annotation":"create_search_job",
+         "description":"Creates a search job in Sumo Logic based on the specified query, time range, and other input parameters that you have specified.",
+         "parameters":[
             {
-                "title": "Server URL",
-                "type": "text",
-                "name": "server_url",
-                "required": true,
-                "visible": true,
-                "editable": true,
-                "tooltip": "API Endpoint, For e.g: https://api.us2.sumologic.com",
-                "description": "URL of the Sumo Logic API server to which you will connect and perform automated operations."
+               "title":"Query",
+               "description":"Specify the query using which you want to create and execute a search job in Sumo Logic.  \n\nNOTE: You must add this query in a valid JSON format.",
+               "type":"text",
+               "name":"query",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "tooltip":"Specify the query using which you want to create and execute a search job in Sumo Logic.  \n\nNOTE: You must add this query in a valid JSON format."
             },
             {
-                "title": "Access ID",
-                "description": "ID required to access the Sumo Logic API.",
-                "type": "text",
-                "name": "access_id",
-                "required": true,
-                "visible": true,
-                "editable": true
+               "title":"From",
+               "type":"datetime",
+               "description":"Specify the start date and time from which you want to start the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format.",
+               "name":"from",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "tooltip":"Specify the start date and time from which you want to start the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format."
             },
             {
-                "title": "Access Key",
-                "description": "Key to access the Sumo Logic API.",
-                "type": "password",
-                "name": "access_key",
-                "required": true,
-                "visible": true,
-                "editable": true
+               "title":"To",
+               "type":"datetime",
+               "description":"Specify the end date and time till when you want to end the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format.",
+               "name":"to",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "tooltip":"Specify the end date and time till when you want to end the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format."
             },
             {
-                "title": "Verify SSL",
-                "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True.",
-                "type": "checkbox",
-                "name": "verify_ssl",
-                "required": false,
-                "visible": true,
-                "editable": true,
-                "value": true
+               "title":"Time Zone",
+               "type":"text",
+               "description":"Select the timezone in which you want to start the search in Sumo Logic.",
+               "name":"timeZone",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "tooltip":"Select the timezone in which you want to start the search in Sumo Logic."
             }
-        ]
-    },
-    "operations": [
-        {
-            "operation": "create_search_job",
-            "title": "Create Search Job",
-            "category": "investigation",
-            "annotation": "create_search_job",
-            "description": "Creates a search job in Sumo Logic based on the specified query, time range, and other input parameters that you have specified.",
-            "parameters": [
-                {
-                    "title": "Query",
-                    "description": "Specify the query using which you want to create and execute a search job in Sumo Logic.  \n\nNOTE: You must add this query in a valid JSON format.",
-                    "type": "text",
-                    "name": "query",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "tooltip": "Specify the query using which you want to create and execute a search job in Sumo Logic.  \n\nNOTE: You must add this query in a valid JSON format."
-                },
-                {
-                    "title": "From",
-                    "type": "datetime",
-                    "description": "Specify the start date and time from which you want to start the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format.",
-                    "name": "from",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "tooltip": "Specify the start date and time from which you want to start the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format."
-                },
-                {
-                    "title": "To",
-                    "type": "datetime",
-                    "description": "Specify the end date and time till when you want to end the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format.",
-                    "name": "to",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "tooltip": "Specify the end date and time till when you want to end the search in Sumo Logic. The date must be in the YYYY-MM-DDTHH:mm:ss format."
-                },
-                {
-                    "title": "Time Zone",
-                    "type": "text",
-                    "description": "Select the timezone in which you want to start the search in Sumo Logic.",
-                    "name": "timeZone",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "tooltip": "Select the timezone in which you want to start the search in Sumo Logic."
-                }
-            ],
-            "enabled": true,
-            "output_schema": {
-                "id": "",
-                "link": {
-                    "rel": "",
-                    "href": ""
-                }
+         ],
+         "enabled":true,
+         "output_schema":{
+            "id":"",
+            "link":{
+               "rel":"",
+               "href":""
             }
-        },
-        {
-            "operation": "get_search_job_status",
-            "title": "Get Search Job Status",
-            "category": "investigation",
-            "annotation": "get_search_job_status",
-            "description": "Retrieves the current status of a search job from Sumo Logic based on the search job ID and pagination parameters you have specified.",
-            "parameters":  [
-                {
-                    "title": "Search Job ID",
-                    "description": "Specify the ID of the search job whose status you want to retrieve from Sumo Logic.",
-                    "tooltip": "Specify the ID of the search job whose status you want to retrieve from Sumo Logic.",
-                    "type": "text",
-                    "name": "searchJobId",
-                    "required": true,
-                    "visible": true,
-                    "editable": true
-                },
-                {
-                    "title": "Cookies",
-                    "type": "text",
-                    "description" : "Assign the value of cookies attribute from response of create search job step",
-                    "tooltip" : "Assign the value of cookies attribute from response of create search job step",
-                    "name": "cookies",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "value": ""
-                }
-            ],
-            "enabled": true,
-            "output_schema": {
-                "state": "",
-                "histogramBuckets": [
-                    {
-                        "startTimestamp": "",
-                        "length": "",
-                        "count": ""
-                    }
-                ],
-                "messageCount": "",
-                "recordCount": "",
-                "pendingWarnings": [],
-                "pendingErrors": [],
-                "usageDetails": ""
+         }
+      },
+      {
+         "operation":"get_search_job_status",
+         "title":"Get Search Job Status",
+         "category":"investigation",
+         "annotation":"get_search_job_status",
+         "description":"Retrieves the current status of a search job from Sumo Logic based on the search job ID and pagination parameters you have specified.",
+         "parameters":[
+            {
+               "title":"Search Job ID",
+               "description":"Specify the ID of the search job whose status you want to retrieve from Sumo Logic.",
+               "tooltip":"Specify the ID of the search job whose status you want to retrieve from Sumo Logic.",
+               "type":"text",
+               "name":"searchJobId",
+               "required":true,
+               "visible":true,
+               "editable":true
+            },
+            {
+               "title":"Cookies",
+               "type":"text",
+               "description":"Assign the value of cookies attribute from response of create search job step",
+               "tooltip":"Assign the value of cookies attribute from response of create search job step",
+               "name":"cookies",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "value":""
             }
-        },
-        {
-            "operation": "get_messages_founded_by_search_job",
-            "title": "Get Messages Founded by Search Job",
-            "category": "investigation",
-            "annotation": "get_messages_founded_by_search_job",
-            "description": "Retrieves messages found by a search job from Sumo Logic based on the search job ID and pagination parameters you have specified.",
-            "parameters": [
-                {
-                    "title": "Search Job ID",
-                    "type": "text",
-                    "name": "searchJobId",
-                    "description": "Specify the ID of the search job whose messages you want to retrieve from Sumo Logic.",
-                    "tooltip": "Specify the ID of the search job whose messages you want to retrieve from Sumo Logic.",
-                    "required": true,
-                    "visible": true,
-                    "editable": true
-                },
-                {
-                    "title": "Offset",
-                    "type": "integer",
-                    "description": "Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0.",
-                    "name": "offset",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "tooltip": "Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0."
-                },
-                {
-                    "title": "Limit",
-                    "type": "integer",
-                    "description": "Specify the maximum number of messages, per page, that this operation should return.",
-                    "name": "limit",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "tooltip": "Specify the maximum number of messages, per page, that this operation should return."
-                },
-                {
-                    "title": "Cookies",
-                    "type": "text",
-                    "description" : "Assign the value of cookies attribute from response of create search job step",
-                    "tooltip" : "Assign the value of cookies attribute from response of create search job step",
-                    "name": "cookies",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "value": ""
-                }
+         ],
+         "enabled":true,
+         "output_schema":{
+            "state":"",
+            "histogramBuckets":[
+               {
+                  "startTimestamp":"",
+                  "length":"",
+                  "count":""
+               }
             ],
-            "enabled": true,
-            "output_schema": {
-                "fields": [
-                    {
-                        "name": "",
-                        "fieldType": "",
-                        "keyField": ""
-                    }
-                ],
-                "messages": [
-                    {
-                        "map": {
-                            "_collector": "",
-                            "eventtime": "",
-                            "type": "",
-                            "eventsource": "",
-                            "_messageid": "",
-                            "_size": "",
-                            "accountid": "",
-                            "category_string": "",
-                            "event_type": "",
-                            "action": "",
-                            "awsaccountid": "",
-                            "eventversion": "",
-                            "groupid": "",
-                            "_sourceid": "",
-                            "cidr_block": "",
-                            "requestid": "",
-                            "_source": "",
-                            "eventtype": "",
-                            "from_port": "",
-                            "eventid": "",
-                            "_raw": "",
-                            "_collectorid": "",
-                            "useragent": "",
-                            "_sourcehost": "",
-                            "eventname": "",
-                            "accesskeyid": "",
-                            "egress": "",
-                            "computer": "",
-                            "logon_id": "",
-                            "msg_summary": "",
-                            "account_name": "",
-                            "_format": "",
-                            "arn": "",
-                            "_blockid": "",
-                            "sourceipaddress": "",
-                            "account_domain": "",
-                            "_messagetime": "",
-                            "to_port": "",
-                            "_messagecount": "",
-                            "principalid": "",
-                            "recipientaccountid": "",
-                            "_sourcename": "",
-                            "event_id": "",
-                            "_view": "",
-                            "_receipttime": "",
-                            "_sourcecategory": "",
-                            "category": "",
-                            "responseelements": "",
-                            "awsregion": "",
-                            "username": ""
+            "messageCount":"",
+            "recordCount":"",
+            "pendingWarnings":[
+               
+            ],
+            "pendingErrors":[
+               
+            ],
+            "usageDetails":""
+         }
+      },
+      {
+         "operation":"get_messages_founded_by_search_job",
+         "title":"Get Messages Founded by Search Job",
+         "category":"investigation",
+         "annotation":"get_messages_founded_by_search_job",
+         "description":"Retrieves messages found by a search job from Sumo Logic based on the search job ID and pagination parameters you have specified.",
+         "parameters":[
+            {
+               "title":"Search Job ID",
+               "type":"text",
+               "name":"searchJobId",
+               "description":"Specify the ID of the search job whose messages you want to retrieve from Sumo Logic.",
+               "tooltip":"Specify the ID of the search job whose messages you want to retrieve from Sumo Logic.",
+               "required":true,
+               "visible":true,
+               "editable":true
+            },
+            {
+               "title":"Offset",
+               "type":"integer",
+               "description":"Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0.",
+               "name":"offset",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "tooltip":"Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0."
+            },
+            {
+               "title":"Limit",
+               "type":"integer",
+               "description":"Specify the maximum number of messages, per page, that this operation should return.",
+               "name":"limit",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "tooltip":"Specify the maximum number of messages, per page, that this operation should return."
+            },
+            {
+               "title":"Cookies",
+               "type":"text",
+               "description":"Assign the value of cookies attribute from response of create search job step",
+               "tooltip":"Assign the value of cookies attribute from response of create search job step",
+               "name":"cookies",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "value":""
+            }
+         ],
+         "enabled":true,
+         "output_schema":{
+            "fields":[
+               {
+                  "name":"",
+                  "fieldType":"",
+                  "keyField":""
+               }
+            ],
+            "messages":[
+               {
+                  "map":{
+                     "_collector":"",
+                     "eventtime":"",
+                     "type":"",
+                     "eventsource":"",
+                     "_messageid":"",
+                     "_size":"",
+                     "accountid":"",
+                     "category_string":"",
+                     "event_type":"",
+                     "action":"",
+                     "awsaccountid":"",
+                     "eventversion":"",
+                     "groupid":"",
+                     "_sourceid":"",
+                     "cidr_block":"",
+                     "requestid":"",
+                     "_source":"",
+                     "eventtype":"",
+                     "from_port":"",
+                     "eventid":"",
+                     "_raw":"",
+                     "_collectorid":"",
+                     "useragent":"",
+                     "_sourcehost":"",
+                     "eventname":"",
+                     "accesskeyid":"",
+                     "egress":"",
+                     "computer":"",
+                     "logon_id":"",
+                     "msg_summary":"",
+                     "account_name":"",
+                     "_format":"",
+                     "arn":"",
+                     "_blockid":"",
+                     "sourceipaddress":"",
+                     "account_domain":"",
+                     "_messagetime":"",
+                     "to_port":"",
+                     "_messagecount":"",
+                     "principalid":"",
+                     "recipientaccountid":"",
+                     "_sourcename":"",
+                     "event_id":"",
+                     "_view":"",
+                     "_receipttime":"",
+                     "_sourcecategory":"",
+                     "category":"",
+                     "responseelements":"",
+                     "awsregion":"",
+                     "username":""
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "operation":"get_records_founded_by_search_job",
+         "title":"Get Records Founded by Search Job",
+         "category":"investigation",
+         "annotation":"get_records_founded_by_search_job",
+         "description":"Retrieves records found by a search job from Sumo Logic based on the search job ID and pagination parameters you have specified.",
+         "parameters":[
+            {
+               "title":"Search Job ID",
+               "description":"Specify the ID of the search job whose records you want to retrieve from Sumo Logic.",
+               "tooltip":"Specify the ID of the search job whose records you want to retrieve from Sumo Logic.",
+               "type":"text",
+               "name":"searchJobId",
+               "required":true,
+               "visible":true,
+               "editable":true
+            },
+            {
+               "title":"Offset",
+               "type":"integer",
+               "description":"Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0.",
+               "name":"offset",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "tooltip":"Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0."
+            },
+            {
+               "title":"Limit",
+               "type":"integer",
+               "description":"Specify the maximum number of messages, per page, that this operation should return.",
+               "name":"limit",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "tooltip":"Specify the maximum number of messages, per page, that this operation should return."
+            },
+            {
+               "title":"Cookies",
+               "type":"text",
+               "description":"Assign the value of cookies attribute from response of create search job step",
+               "tooltip":"Assign the value of cookies attribute from response of create search job step",
+               "name":"cookies",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "value":""
+            }
+         ],
+         "enabled":true,
+         "output_schema":{
+            "fields":[
+               {
+                  "name":"",
+                  "fieldType":"",
+                  "keyField":""
+               }
+            ],
+            "records":[
+               {
+                  "map":{
+                     "_count":"",
+                     "_sourcecategory":""
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "operation":"delete_search_job",
+         "title":"Delete Search Job",
+         "category":"investigation",
+         "annotation":"delete_search_job",
+         "description":"Deletes a search job from Sumo Logic based on the search job ID you have specified.",
+         "parameters":[
+            {
+               "title":"Search Job ID",
+               "type":"text",
+               "name":"searchJobId",
+               "description":"Specify the ID of the search job that you want to delete from Sumo Logic.",
+               "tooltip":"Specify the ID of the search job that you want to delete from Sumo Logic.",
+               "required":true,
+               "visible":true,
+               "editable":true
+            },
+            {
+               "title":"Cookies",
+               "type":"text",
+               "description":"Assign the value of cookies attribute from response of create search job step",
+               "tooltip":"Assign the value of cookies attribute from response of create search job step",
+               "name":"cookies",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "value":""
+            }
+         ],
+         "enabled":true,
+         "output_schema":{
+            "id":""
+         }
+      },
+      {
+         "operation":"get_list_of_all_insights",
+         "title":"Get the List of All Insights",
+         "category":"investigation",
+         "annotation":"get_list_of_all_insights",
+         "description":"Retrieves a list of insights from the Sumo Logic Server.NOTE: This API does not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
+         "parameters":[
+            
+         ],
+         "enabled":true,
+         "output_schema":{
+            "fields":[
+               {
+                  "name":"",
+                  "fieldType":"",
+                  "keyField":""
+               }
+            ],
+            "records":[
+               {
+                  "map":{
+                     "_count":"",
+                     "_sourcecategory":""
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "operation":"get_details_by_insights_id",
+         "title":"Get Details By Insights ID",
+         "category":"investigation",
+         "annotation":"get_details_by_insights_id",
+         "description":"Retrieves details of an insight from the Sumo Logic based on the insight ID that you have specified. NOTE: This API does not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
+         "parameters":[
+            {
+               "title":"Insights ID",
+               "type":"text",
+               "description":"Specify the ID of the search insights that you want to retrieve from Sumo Logic.",
+               "name":"insights_id",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "tooltip":"Specify the ID of the search insights that you want to retrieve from Sumo Logic."
+            }
+         ],
+         "enabled":true,
+         "output_schema":{
+            "fields":[
+               {
+                  "name":"",
+                  "fieldType":"",
+                  "keyField":""
+               }
+            ],
+            "records":[
+               {
+                  "map":{
+                     "_count":"",
+                     "_sourcecategory":""
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "operation":"get_list_of_insights_by_query",
+         "title":"Get the List of Insights By Query",
+         "category":"investigation",
+         "annotation":"get_list_of_insights_by_query",
+         "description":"Retrieves a list of insights from the Sumo Logic based on the query, pagination, and other input parameters that you have specified. NOTE: This API does not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
+         "parameters":[
+            {
+               "title":"Query",
+               "type":"text",
+               "name":"query",
+               "required":false,
+               "description":"Specify the query using which you want to search insights in Sumo Logic.",
+               "visible":true,
+               "editable":true,
+               "tooltip":"Specify the query using which you want to search insights in Sumo Logic."
+            },
+            {
+               "title":"Offset",
+               "description":"Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0.",
+               "type":"integer",
+               "name":"offset",
+               "required":false,
+               "visible":true,
+               "editable":true,
+               "value":0,
+               "tooltip":"Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0."
+            },
+            {
+               "title":"Limit",
+               "type":"integer",
+               "description":"Specify the maximum number of messages, per page, that this operation should return.",
+               "name":"limit",
+               "required":false,
+               "visible":true,
+               "editable":true,
+               "value":50,
+               "tooltip":"Specify the maximum number of messages, per page, that this operation should return."
+            },
+            {
+               "title":"Record Summary Fields",
+               "type":"text",
+               "name":"recordSummaryFields",
+               "description":"Specify the record summary field.",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "placeholder":"Eg: action,description",
+               "tooltip":"Specify the record summary field."
+            }
+         ],
+         "enabled":true,
+         "output_schema":{
+            "fields":[
+               {
+                  "name":"",
+                  "fieldType":"",
+                  "keyField":""
+               }
+            ],
+            "records":[
+               {
+                  "map":{
+                     "_count":"",
+                     "_sourcecategory":""
+                  }
+               }
+            ]
+         }
+      },
+      {
+         "operation":"get_insight_enrichments",
+         "title":"Get an Insights's Enrichments",
+         "category":"investigation",
+         "annotation":"get_insight_enrichments",
+         "description":"Retrieves the enrichments for a specific insight by its ID.",
+         "parameters":[
+            {
+               "title":"Insight ID",
+               "description":"Specify the ID of the insight.",
+               "tooltip":"Specify the ID of the insight.",
+               "type":"text",
+               "name":"insight_id",
+               "required":true,
+               "visible":true,
+               "editable":true
+            }
+         ],
+         "enabled":true,
+         "output_schema":{
+            "enrichments":[
+               
+            ]
+         }
+      },
+      {
+         "operation":"get_insight_comments",
+         "title":"Get an Insight's Comments",
+         "category":"investigation",
+         "annotation":"get_insight_comments",
+         "description":"Retrieves the comments for a specific insight by its ID.",
+         "parameters":[
+            {
+               "title":"Insight ID",
+               "description":"Specify the ID of the insight.",
+               "tooltip":"Specify the ID of the insight.",
+               "type":"text",
+               "name":"insight_id",
+               "required":true,
+               "visible":true,
+               "editable":true
+            }
+         ],
+         "enabled":true,
+         "output_schema":{
+            "comments":[
+               
+            ]
+         }
+      },
+      {
+         "operation":"get_insight_history",
+         "title":"Get an Insight's History",
+         "category":"investigation",
+         "annotation":"get_insight_history",
+         "description":"Retrieves the history for a specific insight by its ID.",
+         "parameters":[
+            {
+               "title":"Insight ID",
+               "description":"Specify the ID of the insight.",
+               "tooltip":"Specify the ID of the insight.",
+               "type":"text",
+               "name":"insight_id",
+               "required":true,
+               "visible":true,
+               "editable":true
+            }
+         ],
+         "enabled":true,
+         "output_schema":{
+            "hisotry":[
+               
+            ]
+         }
+      },
+      {
+         "operation":"get_insight_involved_entities",
+         "title":"Get an Insight's List of Involved Entities",
+         "category":"investigation",
+         "annotation":"get_insight_involved_entities",
+         "description":"Retrieves the involved entities for a specific insight by its ID.",
+         "parameters":[
+            {
+               "title":"Insight ID",
+               "description":"Specify the ID of the insight.",
+               "tooltip":"Specify the ID of the insight.",
+               "type":"text",
+               "name":"insight_id",
+               "required":true,
+               "visible":true,
+               "editable":true
+            }
+         ],
+         "enabled":true,
+         "output_schema":{
+            "involvedEntities":[
+               
+            ]
+         }
+      },
+      {
+         "operation":"update_insight_status",
+         "title":"Update the Status of an Insight",
+         "category":"investigation",
+         "annotation":"update_insight_status",
+         "description":"Update the status of a specific insight by its ID.",
+         "parameters":[
+            {
+               "title":"Insight ID",
+               "description":"Specify the ID of the insight.",
+               "tooltip":"Specify the ID of the insight.",
+               "type":"text",
+               "name":"insight_id",
+               "required":true,
+               "visible":true,
+               "editable":true
+            },
+            {
+               "title":"Status",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "type":"select",
+               "options":[
+                  "new",
+                  "inprogress",
+                  "closed"
+               ],
+               "name":"status",
+               "value":"",
+               "tooltip":"The new status you want set the Insight to.",
+               "description":"The new status you want set the Insight to."
+            },
+            {
+               "title":"Resolution",
+               "description":"The resolution reason for closing this Insight.",
+               "tooltip":"The resolution reason for closing this Insight.",
+               "type":"text",
+               "name":"resolution",
+               "required":false,
+               "visible":true,
+               "editable":true
+            }
+         ],
+         "enabled":true,
+         "output_schema":{
+            "data":{
+               "id":"string",
+               "readableId":"string",
+               "name":"string",
+               "description":"string",
+               "timestamp":"2025-07-10T07:09:53Z",
+               "source":"ALGORITHM",
+               "assignedTo":"string",
+               "teamAssignedTo":"string",
+               "created":"2025-07-10T07:09:53Z",
+               "closed":"2025-07-10T07:09:53Z",
+               "closedBy":"string",
+               "severity":"CRITICAL",
+               "confidence":0,
+               "assignee":{
+                  "username":"string",
+                  "displayName":"string"
+               },
+               "status":{
+                  "name":"string",
+                  "displayName":"string"
+               },
+               "resolution":"string",
+               "subResolution":"string",
+               "entity":{
+                  "id":"string",
+                  "entityType":"string",
+                  "name":"string",
+                  "value":"string",
+                  "hostname":"string",
+                  "macAddress":"string",
+                  "sensorZone":"string"
+               },
+               "signals":[
+                  {
+                     "id":"string",
+                     "name":"string",
+                     "description":"string",
+                     "stage":"string",
+                     "created":"2025-07-10T07:09:53Z",
+                     "timestamp":"2025-07-10T07:09:53Z",
+                     "severity":0,
+                     "recordCount":0,
+                     "recordTypes":[
+                        "string"
+                     ],
+                     "contentType":"string",
+                     "allRecords":[
+                        {
+                           
                         }
-                    }
-                ]
-            }
-        },
-        {
-            "operation": "get_records_founded_by_search_job",
-            "title": "Get Records Founded by Search Job",
-            "category": "investigation",
-            "annotation": "get_records_founded_by_search_job",
-            "description": "Retrieves records found by a search job from Sumo Logic based on the search job ID and pagination parameters you have specified.",
-            "parameters": [
-                {
-                    "title": "Search Job ID",
-                    "description": "Specify the ID of the search job whose records you want to retrieve from Sumo Logic.",
-                    "tooltip": "Specify the ID of the search job whose records you want to retrieve from Sumo Logic.",
-                    "type": "text",
-                    "name": "searchJobId",
-                    "required": true,
-                    "visible": true,
-                    "editable": true
-                },
-                {
-                    "title": "Offset",
-                    "type": "integer",
-                    "description": "Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0.",
-                    "name": "offset",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "tooltip": "Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0."
-                },
-                {
-                    "title": "Limit",
-                    "type": "integer",
-                    "description": "Specify the maximum number of messages, per page, that this operation should return.",
-                    "name": "limit",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "tooltip": "Specify the maximum number of messages, per page, that this operation should return."
-                },
-                {
-                    "title": "Cookies",
-                    "type": "text",
-                    "description" : "Assign the value of cookies attribute from response of create search job step",
-                    "tooltip" : "Assign the value of cookies attribute from response of create search job step",
-                    "name": "cookies",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "value": ""
-                }
-            ],
-            "enabled": true,
-            "output_schema": {
-                "fields": [
-                    {
-                        "name": "",
-                        "fieldType": "",
-                        "keyField": ""
-                    }
-                ],
-                "records": [
-                    {
-                        "map": {
-                            "_count": "",
-                            "_sourcecategory": ""
+                     ],
+                     "ruleId":"string",
+                     "tags":[
+                        "string"
+                     ],
+                     "entity":{
+                        "id":"string",
+                        "entityType":"string",
+                        "name":"string",
+                        "value":"string",
+                        "hostname":"string",
+                        "macAddress":"string",
+                        "sensorZone":"string"
+                     },
+                     "artifacts":[
+                        {
+                           "name":"string",
+                           "value":"string",
+                           "recordUid":"string",
+                           "recordStream":"string"
                         }
-                    }
-                ]
+                     ],
+                     "recordSearchDetails":{
+                        "query":"string",
+                        "queryStartTime":"2025-07-10T07:09:53Z",
+                        "queryEndTime":"2025-07-10T07:09:53Z"
+                     }
+                  }
+               ],
+               "involvedEntities":[
+                  {
+                     "id":"string",
+                     "entityType":"string",
+                     "name":"string",
+                     "value":"string",
+                     "hostname":"string",
+                     "macAddress":"string",
+                     "sensorZone":"string"
+                  }
+               ],
+               "artifacts":[
+                  {
+                     "name":"string",
+                     "value":"string",
+                     "recordUid":"string",
+                     "recordStream":"string",
+                     "signal":{
+                        "id":"string",
+                        "name":"string",
+                        "timestamp":"2025-07-10T07:09:53Z"
+                     }
+                  }
+               ],
+               "lastUpdated":"2025-07-10T07:09:53Z",
+               "lastUpdatedBy":"string",
+               "orgId":"string",
+               "timeToDetection":0,
+               "timeToResponse":0,
+               "timeToRemediation":0,
+               "tags":[
+                  "string"
+               ],
+               "summary":"string"
             }
-        },
-        {
-            "operation": "delete_search_job",
-            "title": "Delete Search Job",
-            "category": "investigation",
-            "annotation": "delete_search_job",
-            "description": "Deletes a search job from Sumo Logic based on the search job ID you have specified.",
-            "parameters": [
-                {
-                    "title": "Search Job ID",
-                    "type": "text",
-                    "name": "searchJobId",
-                    "description": "Specify the ID of the search job that you want to delete from Sumo Logic.",
-                    "tooltip": "Specify the ID of the search job that you want to delete from Sumo Logic.",
-                    "required": true,
-                    "visible": true,
-                    "editable": true
-                },
-                {
-                    "title": "Cookies",
-                    "type": "text",
-                    "description" : "Assign the value of cookies attribute from response of create search job step",
-                    "tooltip" : "Assign the value of cookies attribute from response of create search job step",
-                    "name": "cookies",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "value": ""
-                }
-            ],
-            "enabled": true,
-            "output_schema": {
-                "id": ""
+         }
+      },
+      {
+         "operation":"update_insight_severity",
+         "title":"Update the Severity of an Insight",
+         "category":"investigation",
+         "annotation":"update_insight_severity",
+         "description":"Update the severity of a specific insight by its ID.",
+         "parameters":[
+            {
+               "title":"Insight ID",
+               "description":"Specify the ID of the insight.",
+               "tooltip":"Specify the ID of the insight.",
+               "type":"text",
+               "name":"insight_id",
+               "required":true,
+               "visible":true,
+               "editable":true
+            },
+            {
+               "title":"Severity",
+               "required":true,
+               "visible":true,
+               "editable":true,
+               "type":"select",
+               "options":[
+                  "CRITICAL",
+                  "HIGH",
+                  "LOW",
+                  "MEDIUM"
+               ],
+               "name":"severity",
+               "value":"",
+               "tooltip":"The new severity you want set the Insight to.",
+               "description":"The new severity you want set the Insight to."
             }
-        },
-        {
-            "operation": "get_list_of_all_insights",
-            "title": "Get the List of All Insights",
-            "category": "investigation",
-            "annotation": "get_list_of_all_insights",
-            "description": "Retrieves a list of insights from the Sumo Logic Server.NOTE: This API does not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
-            "parameters": [],
-            "enabled": true,
-            "output_schema": {
-                "fields": [
-                    {
-                        "name": "",
-                        "fieldType": "",
-                        "keyField": ""
-                    }
-                ],
-                "records": [
-                    {
-                        "map": {
-                            "_count": "",
-                            "_sourcecategory": ""
+         ],
+         "enabled":true,
+         "output_schema":{
+            "data":{
+               "id":"string",
+               "readableId":"string",
+               "name":"string",
+               "description":"string",
+               "timestamp":"2025-07-10T07:09:53Z",
+               "source":"ALGORITHM",
+               "assignedTo":"string",
+               "teamAssignedTo":"string",
+               "created":"2025-07-10T07:09:53Z",
+               "closed":"2025-07-10T07:09:53Z",
+               "closedBy":"string",
+               "severity":"CRITICAL",
+               "confidence":0,
+               "assignee":{
+                  "username":"string",
+                  "displayName":"string"
+               },
+               "status":{
+                  "name":"string",
+                  "displayName":"string"
+               },
+               "resolution":"string",
+               "subResolution":"string",
+               "entity":{
+                  "id":"string",
+                  "entityType":"string",
+                  "name":"string",
+                  "value":"string",
+                  "hostname":"string",
+                  "macAddress":"string",
+                  "sensorZone":"string"
+               },
+               "signals":[
+                  {
+                     "id":"string",
+                     "name":"string",
+                     "description":"string",
+                     "stage":"string",
+                     "created":"2025-07-10T07:09:53Z",
+                     "timestamp":"2025-07-10T07:09:53Z",
+                     "severity":0,
+                     "recordCount":0,
+                     "recordTypes":[
+                        "string"
+                     ],
+                     "contentType":"string",
+                     "allRecords":[
+                        {
+                           
                         }
-                    }
-                ]
-            }
-        },
-        {
-            "operation": "get_details_by_insights_id",
-            "title": "Get Details By Insights ID",
-            "category": "investigation",
-            "annotation": "get_details_by_insights_id",
-            "description": "Retrieves details of an insight from the Sumo Logic based on the insight ID that you have specified. NOTE: This API does not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
-            "parameters": [
-                {
-                    "title": "Insights ID",
-                    "type": "text",
-                    "description": "Specify the ID of the search insights that you want to retrieve from Sumo Logic.",
-                    "name": "insights_id",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "tooltip": "Specify the ID of the search insights that you want to retrieve from Sumo Logic."
-                }
-            ],
-            "enabled": true,
-            "output_schema": {
-                "fields": [
-                    {
-                        "name": "",
-                        "fieldType": "",
-                        "keyField": ""
-                    }
-                ],
-                "records": [
-                    {
-                        "map": {
-                            "_count": "",
-                            "_sourcecategory": ""
+                     ],
+                     "ruleId":"string",
+                     "tags":[
+                        "string"
+                     ],
+                     "entity":{
+                        "id":"string",
+                        "entityType":"string",
+                        "name":"string",
+                        "value":"string",
+                        "hostname":"string",
+                        "macAddress":"string",
+                        "sensorZone":"string"
+                     },
+                     "artifacts":[
+                        {
+                           "name":"string",
+                           "value":"string",
+                           "recordUid":"string",
+                           "recordStream":"string"
                         }
-                    }
-                ]
+                     ],
+                     "recordSearchDetails":{
+                        "query":"string",
+                        "queryStartTime":"2025-07-10T07:09:53Z",
+                        "queryEndTime":"2025-07-10T07:09:53Z"
+                     }
+                  }
+               ],
+               "involvedEntities":[
+                  {
+                     "id":"string",
+                     "entityType":"string",
+                     "name":"string",
+                     "value":"string",
+                     "hostname":"string",
+                     "macAddress":"string",
+                     "sensorZone":"string"
+                  }
+               ],
+               "artifacts":[
+                  {
+                     "name":"string",
+                     "value":"string",
+                     "recordUid":"string",
+                     "recordStream":"string",
+                     "signal":{
+                        "id":"string",
+                        "name":"string",
+                        "timestamp":"2025-07-10T07:09:53Z"
+                     }
+                  }
+               ],
+               "lastUpdated":"2025-07-10T07:09:53Z",
+               "lastUpdatedBy":"string",
+               "orgId":"string",
+               "timeToDetection":0,
+               "timeToResponse":0,
+               "timeToRemediation":0,
+               "tags":[
+                  "string"
+               ],
+               "summary":"string"
             }
-        },
-        {
-            "operation": "get_list_of_insights_by_query",
-            "title": "Get the List of Insights By Query",
-            "category": "investigation",
-            "annotation": "get_list_of_insights_by_query",
-            "description": "Retrieves a list of insights from the Sumo Logic based on the query, pagination, and other input parameters that you have specified. NOTE: This API does not return more than 10,000 Signals for a given query, even when split over many pages. To retrieve all Signals, use the /signals/all API.",
-            "parameters": [
-                {
-                    "title": "Query",
-                    "type": "text",
-                    "name": "query",
-                    "required": false,
-                    "description": "Specify the query using which you want to search insights in Sumo Logic.",
-                    "visible": true,
-                    "editable": true,
-                    "tooltip": "Specify the query using which you want to search insights in Sumo Logic."
-                },
-                {
-                    "title": "Offset",
-                    "description": "Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0.",
-                    "type": "integer",
-                    "name": "offset",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": 0,
-                    "tooltip": "Specify the count of records to skip when retrieving results. This parameter is useful if you want to get a subset of records, say messages starting from the 10th message. By default, this is set as 0."
-                },
-                {
-                    "title": "Limit",
-                    "type": "integer",
-                    "description": "Specify the maximum number of messages, per page, that this operation should return.",
-                    "name": "limit",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": 50,
-                    "tooltip": "Specify the maximum number of messages, per page, that this operation should return."
-                },
-                {
-                    "title": "Record Summary Fields",
-                    "type": "text",
-                    "name": "recordSummaryFields",
-                    "description": "Specify the record summary field.",
-                    "required": true,
-                    "visible": true,
-                    "editable": true,
-                    "placeholder": "Eg: action,description",
-                    "tooltip": "Specify the record summary field."
-                }
-            ],
-            "enabled": true,
-            "output_schema": {
-                "fields": [
-                    {
-                        "name": "",
-                        "fieldType": "",
-                        "keyField": ""
-                    }
-                ],
-                "records": [
-                    {
-                        "map": {
-                            "_count": "",
-                            "_sourcecategory": ""
-                        }
-                    }
-                ]
-            }
-        }
-    ]
+         }
+      }
+   ]
 }

@@ -5,10 +5,12 @@ Copyright (c) 2025 Fortinet Inc
 Copyright end
 """
 
-import base64, json, requests
+import base64, json, requests, logging
+from requests_toolbelt.utils import dump
 from connectors.core.connector import ConnectorError, get_logger
 
 logger = get_logger('sumo_logic')
+logger.setLevel(logging.DEBUG)
 
 SSL_VALIDATION_ERROR = 'SSL certificate validation failed'
 CONNECTION_TIMEOUT = 'The request timed out while trying to connect to the remote server'
@@ -19,6 +21,14 @@ GET_MESSAGE_BY_SEARCH_JOB = '/api/v1/search/jobs/{SEARCH_JOB_ID}/messages?offset
 GET_RECORDS_BY_SEARCH_JOB = '/api/v1/search/jobs/{SEARCH_JOB_ID}/records?offset={OFFSET}&limit={LIMIT}'
 CHECK = '/api/v1/collectors?limit=2'
 
+ENDPOINTS = {
+    'get_insight_enrichments':'/api/sec/v1/insights/{0}/enrichments',
+    'get_insight_comments':'/api/sec/v1/insights/{0}/comments',
+    'get_insight_history':'/api/sec/v1/insights/{0}/history',
+    'get_insight_involved_entities': '/api/sec/v1/insights/{0}/involved-entities',
+    'update_insight_status':'/api/sec/v1/insights/{0}/status',
+    'update_insight_severity':'/api/sec/v1/insights/{0}/severity'
+}
 
 ERROR_MSG = {
     400: 'Bad/Invalid Request',
@@ -82,6 +92,7 @@ def _api_request(url, config, method='get', payload={}, json_format=True, params
         request_url = server_url + url
         api_response = requests.request(method=method, url=request_url, headers=header, cookies=cookies,
                                         data=json.dumps(payload), params=params, verify=verify_ssl)
+        logger.debug('\n{}\n'.format(dump.dump_all(api_response).decode('utf-8')))
         if api_response.ok:
             if json_format == True:
                 return json.loads(api_response.content.decode('utf-8'))
@@ -252,40 +263,66 @@ def get_details_by_insights_id(config, params):
         logger.exception(str(Err))
         raise ConnectorError(str(Err))
 
-# Not used in this version, No info.json info provided for this action
-# def get_list_of_insights(config, params):
-#     try:
-#         offset = params.get('offset')
-#         limit = params.get('limit')
-#         record_summary_fields = params.get('recordSummaryFields').split(',')
-#         record_summary_fields_str = ','.join(record_summary_fields)
-#         query = f'/api/sec/v1/insights?offset={offset}&limit={limit}&recordSummaryFields={record_summary_fields_str}'
-#         return _api_request(query, config)
-#     except Exception as Err:
-#         logger.exception(str(Err))
-#         raise ConnectorError(str(Err))
-
 
 def get_list_of_insights_by_query(config, params):
     try:
         query = _get_input(params, "query")
-        param = {
-            "query": query,
+        recordSummaryFields = params.get('recordSummaryFields', 'name')
+        if ',' in recordSummaryFields and isinstance(recordSummaryFields, str):
+            recordSummaryFields = recordSummaryFields.split(',')
+        elif isinstance(recordSummaryFields, list):
+            recordSummaryFields = ','.join(recordSummaryFields)
+
+        req_param = {
+            "q": query,
+            "offset": params.get('offset', 0),
+            "limit": params.get('limit', 100),
+            "recordSummaryFields": recordSummaryFields
         }
-        offset = params.get('offset')  # Provide a default value for offset
-        limit = params.get('limit')  # Provide a default value for limit
 
-        # Handle recordSummaryFields correctly
-        record_summary_fields = params.get('recordSummaryFields', '')
-        record_summary_fields_list = record_summary_fields.split(',') if record_summary_fields else []
-        record_summary_fields_str = ','.join(record_summary_fields_list)
-
-        query_url = f'/api/sec/v1/insights?offset={offset}&limit={limit}&recordSummaryFields={record_summary_fields_str}'
-        return _api_request(query_url, config, payload=param, method='get')
+        endpoint = '/api/sec/v1/insights'
+        return _api_request(endpoint, config, method='get', params=req_param)
     except Exception as err:
         logger.exception(str(err))
         raise ConnectorError(str(err))
 
+
+def get_insight_attr(config, params):
+    try:
+        operation = params.get('operation')
+        insight_id = params.get('insight_id')
+        endpoint = ENDPOINTS.get(operation).format(insight_id)
+        return _api_request(endpoint, config)
+    except Exception as Err:
+        logger.exception(str(Err))
+        raise ConnectorError(str(Err))
+    
+def update_insight_status(config, params):
+    try:
+        operation = params.get('operation')
+        insight_id = params.get('insight_id')
+        endpoint = ENDPOINTS.get(operation).format(insight_id)
+        payload = {
+            "status": params.get('status'),
+            "resolution": params.get('resolution')
+        }
+        return _api_request(endpoint, config, method='put', payload=payload)
+    except Exception as Err:
+        logger.exception(str(Err))
+        raise ConnectorError(str(Err))
+    
+def update_insight_severity(config, params):
+    try:
+        operation = params.get('operation')
+        insight_id = params.get('insight_id')
+        endpoint = ENDPOINTS.get(operation).format(insight_id)
+        payload = {
+            "severity": params.get('severity')
+        }
+        return _api_request(endpoint, config, method='put', payload=payload)
+    except Exception as Err:
+        logger.exception(str(Err))
+        raise ConnectorError(str(Err))    
 
 sumo_logic_ops = {
     'create_search_job': create_search_job,
@@ -296,5 +333,10 @@ sumo_logic_ops = {
     'get_list_of_insights_by_query': get_list_of_insights_by_query,
     'get_list_of_all_insights': get_list_of_all_insights,
     'get_details_by_insights_id': get_details_by_insights_id,
-    # 'get_list_of_insights': get_list_of_insights,
+    'get_insight_enrichments': get_insight_attr,
+    'get_insight_comments': get_insight_attr,
+    'get_insight_history': get_insight_attr,
+    'get_insight_involved_entities': get_insight_attr,
+    'update_insight_status': update_insight_status,
+    'update_insight_severity': update_insight_severity
 }
